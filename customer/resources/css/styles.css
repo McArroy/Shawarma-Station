@@ -1,0 +1,241 @@
+:root
+{
+	/* Colors */
+	--black: rgb(0, 0, 0);
+	--red: rgb(179, 19, 18);
+	--white: rgb(255, 255, 255);
+
+	/* Transitions */
+	--trEaseInOut: all .2s ease-in-out;
+
+	/* Z-Indexes */
+	--navbar: 999999;
+}
+
+*
+{
+	box-sizing: border-box;
+	font-family: Montserrat;
+	font-weight: Medium;
+}
+
+html, body
+{
+	margin: 0;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+a
+{
+	color: var(--black);
+	cursor: pointer;
+	text-decoration: none;
+}
+
+a.button
+{
+	align-items: center;
+	background: var(--red);
+	border-radius: 85px;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+	color: var(--white);
+	display: flex;
+	flex-direction: row;
+	font-size: 1.7em;
+	font-weight: bold;
+	height: auto;
+	justify-content: space-between;
+	padding: 20px 50px;
+	transition: var(--trEaseInOut);
+	width: fit-content;
+}
+
+a.button:hover
+{
+	box-shadow: none;
+	transform: scale(.9);
+}
+
+a.button.whatsapp
+{
+	gap: 20px;
+}
+
+a.button.whatsapp svg
+{
+	fill: var(--white);
+	height: 2em;
+}
+
+header
+{
+	align-items: center;
+	backdrop-filter: blur(10px);
+	display: flex;
+	font-size: 1em;
+	font-weight: 600;
+	gap: 70px;
+	height: 80px;
+	justify-content: center;
+	position: fixed;
+	text-align: center;
+	width: 100%;
+	z-index: var(--navbar);
+}
+
+header a
+{
+	transition: var(--trEaseInOut);
+}
+
+header a:hover, header a.active
+{
+	color: var(--red);
+	text-decoration: underline;
+	text-decoration-thickness: .2em;
+	text-underline-offset: .3em;
+}
+
+footer
+{
+	background: var(--red);
+	bottom: 1;
+	color: var(--white);
+	display: flex;
+	height: 50dvh;
+	margin-top: 90px;
+	padding: 30px 90px;
+	position: absolute;
+	width: 100%;
+}
+
+footer .contents
+{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 100%;
+}
+
+footer .contents div
+{
+	width: 80%;
+}
+
+footer .contents div:not(:nth-child(1))
+{
+	text-align: center;
+}
+
+footer .contents p.title
+{
+	font-size: 20px;
+	font-weight: bold;
+}
+
+footer .contents a.button
+{
+	background: none;
+	border: 2px solid transparent;
+	border-radius: 10px;
+	box-shadow: none;
+	fill: var(--white);
+	font-size: 1em;
+	gap: 20px;
+	justify-content: start;
+	padding: 10px;
+	width: 100%;
+}
+
+footer .contents a.button:hover
+{
+	border: 2px solid var(--white);
+}
+
+footer .contents a.button svg
+{
+	height: 1.5em;
+}
+
+footer .contents .menu a.button
+{
+	justify-content: center;
+}
+
+footer .contents .online-order a.button
+{
+	border: none;
+	justify-content: center;
+}
+
+body .page-contents
+{
+	background: var(--white);
+	display: flex;
+	padding: 150px 90px 0 90px;
+	width: 100%;
+}
+
+.hidden
+{
+	display: none !important;
+}
+
+.page-contents .home
+{
+	display: flex;
+	flex-direction: row;
+	height: 100dvh;
+	justify-content: space-between;
+	width: 100dvw;
+}
+
+.page-contents .home .left
+{
+	display: flex;
+	flex-direction: column;
+}
+
+.page-contents .home .left .title
+{
+	display: flex;
+	flex-direction: column;
+	font-size: 5em;
+	font-weight: bold;
+	margin-bottom: 50px;
+	text-shadow: 1px 0 3px var(--black);
+}
+
+.page-contents .home .left .title span:nth-child(2)
+{
+	font-size: .33em;
+	margin-top: 20px;
+	text-shadow: none;
+}
+
+.page-contents .home .left a
+{
+	transition: var(--trEaseInOut);
+}
+
+.page-contents .home .right
+{
+	display: flex;
+	flex-direction: column;
+	right: 0;
+}
+
+.page-contents .home .right img
+{
+	height: 750px;
+	position: absolute;
+	transform: translateX(-25em);
+}
+
+.page-contents .home .right img:nth-child(2)
+{
+	height: 990px;
+	position: absolute;
+	transform: translate(-33em, -7em);
+}
