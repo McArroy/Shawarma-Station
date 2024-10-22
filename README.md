@@ -19,6 +19,7 @@ These changelogs are basically just a summary list of changes that are very impo
 
 **[ CUSTOMER ]**
 - Finished home-page layout
+- Fixed some javascript's logic-code
 
 </details>
 
