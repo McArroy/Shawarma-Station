@@ -1,6 +1,35 @@
 function resetNavBarButtons()
 {
 	$("body header a").removeClass("active");
+
+	$("html, body").animate({ scrollTop: 0 }, 20);
+}
+
+function disabledPageHome()
+{
+	if (!$("body .page-contents .home").hasClass("hidden"))
+		$("body .page-contents .home").addClass("hidden");
+
+	if (!$("body .page-contents .about").hasClass("hidden"))
+		$("body .page-contents .about").addClass("hidden");
+
+	if (!$("body .page-contents .best-menu").hasClass("hidden"))
+		$("body .page-contents .best-menu").addClass("hidden");
+}
+
+function enabledPageHome(flags)
+{
+	if ($("body .page-contents .home").hasClass("hidden"))
+		$("body .page-contents .home").removeClass("hidden");
+
+	if (flags === 1)
+	{
+		if ($("body .page-contents .about").hasClass("hidden"))
+			$("body .page-contents .about").removeClass("hidden");
+	
+		if ($("body .page-contents .best-menu").hasClass("hidden"))
+			$("body .page-contents .best-menu").removeClass("hidden");
+	}
 }
 
 function pageHome()
@@ -17,8 +46,7 @@ function pageHome()
 	
 	$("body .page-contents .home .left a.button.menu").removeClass("hidden");
 
-	if ($("body .page-contents .home").hasClass("hidden"))
-		$("body .page-contents .home").removeClass("hidden");
+	enabledPageHome(1);
 }
 
 function pageMenu(url)
@@ -29,8 +57,7 @@ function pageMenu(url)
 
 	$("body header a[href='#menu']").addClass("active");
 
-	if (!$("body .page-contents .home").hasClass("hidden"))
-		$("body .page-contents .home").addClass("hidden");
+	disabledPageHome();
 
 	if (queryIndex !== -1)
 	{
@@ -52,8 +79,8 @@ function pageContact()
 
 	$("body .page-contents .home .left a.button.whatsapp").removeClass("hidden");
 
-	if ($("body .page-contents .home").hasClass("hidden"))
-		$("body .page-contents .home").removeClass("hidden");
+	disabledPageHome();
+	enabledPageHome(0);
 }
 
 $(document).ready(function()
