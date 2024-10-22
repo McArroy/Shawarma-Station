@@ -222,7 +222,7 @@ footer .contents .online-order a.button
 {
 	display: flex;
 	flex-direction: row;
-	height: 100dvh;
+	height: 100vh;
 	justify-content: space-between;
 	margin-bottom: 150px;
 	padding: 150px 0 0 var(--defPadding);
@@ -381,4 +381,93 @@ footer .contents .online-order a.button
 	justify-content: space-between;
 	margin-bottom: 70px;
 	width: 100%;
+}
+
+.page-contents .page-menu
+{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	margin-bottom: 150px;
+	padding: 150px var(--defPadding) 0 var(--defPadding);
+	width: 100dvw;
+}
+
+.page-contents .page-menu .title
+{
+	font-size: 4em;
+	font-weight: bold;
+	margin-bottom: 50px;
+	text-align: center;
+	width: 100%;
+}
+
+.page-contents .page-menu .selections
+{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	justify-content: start;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.page-contents .page-menu .sub-selections
+{
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	justify-content: start;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.page-contents .page-menu .selections a.button.button-unselected, .page-contents .page-menu .sub-selections a.button.button-unselected, .page-contents .page-menu .selections a.button.button-selected, .page-contents .page-menu .sub-selections a.button.button-selected
+{
+	border: 2px solid var(--red);
+	border-radius: 5px;
+	background: var(--white);
+	box-shadow: none;
+	color: var(--black);
+	font-size: 1.2em;
+	padding: 10px 30px;
+	position: relative;
+}
+
+.page-contents .page-menu .selections a.button.button-selected, .page-contents .page-menu .sub-selections a.button.button-selected
+{
+	border: 2px solid transparent;
+	background: var(--red);
+	color: var(--white);
+}
+
+.page-contents .page-menu .selections a.button.button-selected:hover, .page-contents .page-menu .sub-selections a.button.button-selected:hover
+{
+	border: 2px solid var(--white);
+}
+
+.page-contents .page-menu .sub-selections a.button.button-unselected, .page-contents .page-menu .sub-selections a.button.button-selected
+{
+	font-size: 1em;
+	padding: 10px 17px;
+}
+
+.page-contents .page-menu .selections span
+{
+	display: flex;
+	font-size: 2.5em;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.page-contents .page-menu .selections span:nth-child(2)
+{
+	bottom: 0;
+	display: flex;
+	font-size: 2.5em;
+	position: absolute;
+	right: 0;
+	top: auto;
+	transform: translateY(-20%);
 }
