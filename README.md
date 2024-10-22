@@ -18,8 +18,10 @@ These changelogs are basically just a summary list of changes that are very impo
 - Added README.md
 
 **[ CUSTOMER ]**
+- Added first-stage menu-page layout
 - Finished home-page layout
 - Fixed some javascript's logic-code
+- Fixed javascript's code and make it more simple
 
 </details>
 
