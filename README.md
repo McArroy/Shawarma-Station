@@ -14,7 +14,7 @@ These changelogs are basically just a summary list of changes that are very impo
 <details>
 <summary>Click to expand</summary>
 
-**[ CUSTOMER ]**
+**[ HOSTING ]**
 - Enabled hosting's domain [shawarma-station.rf.gd](https://shawarma-station.rf.gd) and now is fully accessible
 
 **[ CUSTOMER ]**
