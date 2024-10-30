@@ -7,6 +7,14 @@ $(document).ready(function()
 		DRINKS: 2
 	};
 
+	const QUERY_FOODS_SUBTYPES =
+	{
+		PACKAGE: "1",
+		SANDWICH: "2",
+		SIDEORDERS: "3",
+		BURGERS: "4"
+	};
+
 	function resetNavBarButtons()
 	{
 		$("body header a").removeClass("active");
@@ -68,6 +76,35 @@ $(document).ready(function()
 			updateButtonState(foodsButton, true);
 			toggleVisibility(subSelections, true);
 			updateButtonState(drinksButton, false);
+
+			toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods"), true);
+			toggleVisibility($("body .page-contents .page-menu .contents-card .class-drinks"), false);
+
+			if (subtype === QUERY_FOODS_SUBTYPES.PACKAGE)
+			{
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card"), false);
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card.foods-subtypes-package"), true);
+			}
+			else if (subtype === QUERY_FOODS_SUBTYPES.SANDWICH)
+			{
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card"), false);
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card.foods-subtypes-sandwich"), true);
+			}
+			else if (subtype === QUERY_FOODS_SUBTYPES.SIDEORDERS)
+			{
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card"), false);
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card.foods-subtypes-sideorders"), true);
+			}
+			else if (subtype === QUERY_FOODS_SUBTYPES.BURGERS)
+			{
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card"), false);
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card.foods-subtypes-burgers"), true);
+			}
+			else
+			{
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card"), false);
+				toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods .card"), true);
+			}
 		}
 		else if (type === QUERY_TYPE.DRINKS)
 		{
@@ -76,12 +113,18 @@ $(document).ready(function()
 			updateButtonState(drinksButton, true);
 			toggleVisibility("body .page-menu .selections a.button.button-foods span#1", false);
 			toggleVisibility("body .page-menu .selections a.button.button-foods span#2", true);
+
+			toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods"), false);
+			toggleVisibility($("body .page-contents .page-menu .contents-card .class-drinks"), true);
 		}
 		else if (type === QUERY_TYPE.FOODS_SUBTYPES)
 		{
 			toggleVisibility(subSelections, isHidden);
 			toggleVisibility("body .page-menu .selections a.button.button-foods span#1", isHidden);
 			toggleVisibility("body .page-menu .selections a.button.button-foods span#2", !isHidden);
+
+			toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods"), true);
+			toggleVisibility($("body .page-contents .page-menu .contents-card .class-drinks"), false);
 		}
 
 		for (let i = 1; i <= 4; i++)
