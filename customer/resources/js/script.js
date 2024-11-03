@@ -145,9 +145,6 @@ $(document).ready(function()
 
 		$("body header a[href='#menu?query=foods']").addClass("active");
 
-		// Make sure reset the hash if page address is not valid
-		window.location.hash = "#menu?query=foods";
-
 		disabledPageHome();
 
 		toggleVisibility("body .page-contents .page-menu", true);
