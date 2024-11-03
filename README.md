@@ -14,6 +14,10 @@ These changelogs are basically just a summary list of changes that are very impo
 <details>
 <summary>Click to expand</summary>
 
+**[ ADMIN ]**
+- Added Laravel's framework
+> This also added Laravel's Jestream, Livewire, etc.
+
 **[ CUSTOMER ]**
 - Fixed menus' default query to "foods" to minimize confusion between foods' and drinks' query
 
