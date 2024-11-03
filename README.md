@@ -10,6 +10,15 @@
 ### Changelogs
 These changelogs are basically just a summary list of changes that are very important for developers information.
 
+#### UPDATE Version 1.2.0.5 [ Last update: 11/03/2024 ]
+<details>
+<summary>Click to expand</summary>
+
+**[ CUSTOMER ]**
+- Fixed menus' default query to "foods" to minimize confusion between foods' and drinks' query
+
+</details>
+
 #### UPDATE Version 1.2.0.1 [ Last update: 10/30/2024 ]
 <details>
 <summary>Click to expand</summary>
