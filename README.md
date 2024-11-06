@@ -10,13 +10,25 @@
 ### Changelogs
 These changelogs are basically just a summary list of changes that are very important for developers information.
 
+#### UPDATE Version 1.2.0.7 [ Last update: 11/06/2024 ]
+<details>
+<summary>Click to expand</summary>
+
+**[ CUSTOMER ]**
+- Added a new style for CSS by using SCSS for a better way to edit and understand the styles
+- Fixed symbols and some codes
+- Fixed some typos on some codes
+- Removed the old "styles.css"
+
+</details>
+
 #### UPDATE Version 1.2.0.5 [ Last update: 11/03/2024 ]
 <details>
 <summary>Click to expand</summary>
 
 **[ ADMIN ]**
 - Added Laravel's framework
-> This also added Laravel's Jestream, Livewire, etc.
+> This also added Laravel's Jetstream, Livewire, etc.
 
 **[ CUSTOMER ]**
 - Fixed menus' default query to "foods" to minimize confusion between foods' and drinks' query
