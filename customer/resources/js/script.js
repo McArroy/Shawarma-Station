@@ -35,7 +35,7 @@ $(document).ready(function()
 	{
 		resetNavBarButtons();
 
-		$("body header a[href='#home']").addClass("active");
+		$("body header a[href='/#home']").addClass("active");
 
 		// Make sure reset the hash if page address is not valid
 		window.location.hash = "#home";
@@ -143,7 +143,7 @@ $(document).ready(function()
 
 		resetNavBarButtons();
 
-		$("body header a[href='#menu?query=foods']").addClass("active");
+		$("body header a[href='/#menu?query=foods']").addClass("active");
 
 		disabledPageHome();
 
@@ -189,7 +189,7 @@ $(document).ready(function()
 	{
 		resetNavBarButtons();
 
-		$("body header a[href='#contact']").addClass("active");
+		$("body header a[href='/#contact']").addClass("active");
 
 		toggleVisibility("body .page-contents .home .left a.button.menu", false);
 		toggleVisibility("body .page-contents .home .left a.button.whatsapp", true);
