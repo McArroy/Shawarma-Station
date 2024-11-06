@@ -111,8 +111,8 @@ $(document).ready(function()
 			updateButtonState(foodsButton, false);
 			toggleVisibility(subSelections, false);
 			updateButtonState(drinksButton, true);
-			toggleVisibility("body .page-menu .selections a.button.button-foods span#1", false);
-			toggleVisibility("body .page-menu .selections a.button.button-foods span#2", true);
+			toggleVisibility("body .page-menu .selections p span#1", false);
+			toggleVisibility("body .page-menu .selections p span#2", true);
 
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods"), false);
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-drinks"), true);
@@ -120,8 +120,8 @@ $(document).ready(function()
 		else if (type === QUERY_TYPE.FOODS_SUBTYPES)
 		{
 			toggleVisibility(subSelections, isHidden);
-			toggleVisibility("body .page-menu .selections a.button.button-foods span#1", isHidden);
-			toggleVisibility("body .page-menu .selections a.button.button-foods span#2", !isHidden);
+			toggleVisibility("body .page-menu .selections p span#1", isHidden);
+			toggleVisibility("body .page-menu .selections p span#2", !isHidden);
 
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods"), true);
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-drinks"), false);

@@ -374,21 +374,28 @@ html .page-contents .page-menu .selections, body .page-contents .page-menu .sele
   margin-bottom: 20px;
   width: 100%;
 }
-html .page-contents .page-menu .selections span, body .page-contents .page-menu .selections span {
+html .page-contents .page-menu .selections p, body .page-contents .page-menu .selections p {
   display: flex;
-  font-size: 2.5em;
+  height: -moz-fit-content;
+  height: fit-content;
+  pointer-events: none;
   position: absolute;
   right: 0;
-  top: 0;
+  top: 1;
+  transform: translateY(25%);
+  width: -moz-fit-content;
+  width: fit-content;
 }
-html .page-contents .page-menu .selections span:nth-child(2), body .page-contents .page-menu .selections span:nth-child(2) {
-  bottom: 0;
+html .page-contents .page-menu .selections p span, body .page-contents .page-menu .selections p span {
   display: flex;
   font-size: 2.5em;
-  position: absolute;
   right: 0;
-  top: auto;
-  transform: translateY(-20%);
+}
+html .page-contents .page-menu .selections p span:nth-child(2), body .page-contents .page-menu .selections p span:nth-child(2) {
+  bottom: 0;
+  font-size: 2.5em;
+  position: absolute;
+  transform: translateY(10%);
 }
 html .page-contents .page-menu .sub-selections, body .page-contents .page-menu .sub-selections {
   display: flex;
