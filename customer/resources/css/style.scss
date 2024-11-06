@@ -1,0 +1,645 @@
+:root
+{
+	/* Colors */
+	--black: rgb(0, 0, 0);
+	--red: rgb(179, 19, 18);
+	--white: rgb(255, 255, 255);
+
+	/* Paddings */
+	--defPadding: 90px;
+
+	/* Transitions */
+	--trEaseInOut: all .2s ease-in-out;
+
+	/* Z-Indexes */
+	--navbar: 999999;
+}
+
+*
+{
+	box-sizing: border-box;
+	cursor: default;
+	font-family: Montserrat;
+	font-weight: Medium;
+	transition: var(--trEaseInOut);
+}
+
+html, body
+{
+	margin: 0;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+	user-select: none;
+
+	a
+	{
+		color: var(--black);
+		cursor: pointer;
+		text-decoration: none;
+
+		&.button
+		{
+			align-items: center;
+			background: var(--red);
+			border-radius: 50em;
+			box-shadow: 0 .5em 1em 0 rgba(0, 0, 0, .2), 0 .4em 1.2em 0 rgba(0, 0, 0, .19);
+			color: var(--white);
+			display: flex;
+			flex-direction: row;
+			font-size: clamp(1em, 1.7vw, 1.7vw);
+			font-weight: bold;
+			height: auto;
+			justify-content: space-between;
+			padding: 1em 2em;
+			width: fit-content;
+
+			&:hover
+			{
+				box-shadow: none;
+				transform: scale(.9);
+			}
+
+			&.whatsapp
+			{
+				gap: 1em;
+
+				svg
+				{
+					fill: var(--white);
+					height: 2em;
+				}
+			}
+		}
+	}
+
+	header
+	{
+		align-items: center;
+		background: rgba(255, 255, 255, .5);
+		backdrop-filter: blur(50px);
+		display: flex;
+		font-size: clamp(.8em, 1vw, 1vw);
+		font-weight: 600;
+		gap: 4.5em;
+		height: clamp(3em, 5em, 5em);
+		justify-content: center;
+		position: fixed;
+		text-align: center;
+		width: 100%;
+		z-index: var(--navbar);
+
+		a:hover, a.active
+		{
+			color: var(--red);
+			text-decoration: underline;
+			text-decoration-thickness: .2em;
+			text-underline-offset: .3em;
+		}
+	}
+
+	footer
+	{
+		background: var(--red);
+		bottom: 1;
+		color: var(--white);
+		display: flex;
+		margin-top: 90px;
+		padding: 30px var(--defPadding) 90px var(--defPadding);
+		position: absolute;
+		width: 100%;
+
+		.contents
+		{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			width: 100%;
+
+			a.button
+			{
+				background: none;
+				border: .12em solid transparent;
+				border-radius: .5em;
+				box-shadow: none;
+				fill: var(--white);
+				font-size: clamp(1em, 1vw, 1vw);
+				gap: 1em;
+				justify-content: start;
+				padding: .7em;
+				width: 100%;
+
+				&:hover
+				{
+					border: .12em solid var(--white);
+				}
+
+				svg
+				{
+					height: 1.5em;
+				}
+			}
+
+			div
+			{
+				width: 80%;
+
+				&:not(:nth-child(1))
+				{
+					text-align: center;
+				}
+			}
+
+			p.title
+			{
+				font-size: clamp(1.25em, 1.25vw, 1.25vw);
+				font-weight: bold;
+			}
+
+			.menu a.button
+			{
+				justify-content: center;
+			}
+
+			.online-order a.button
+			{
+				border: none;
+				justify-content: center;
+
+				img
+				{
+					cursor: pointer;
+					width: clamp(16em, 1vw, 1vw);
+				}
+			}
+		}
+	}
+
+	.hidden
+	{
+		display: none !important;
+	}
+
+	.card
+	{
+		align-items: center;
+		aspect-ratio: 1/1;
+		background: var(--red);
+		border-radius: 20px;
+		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+		color: var(--white);
+		display: flex;
+		flex: 0 1 30%;
+		flex-direction: column;
+		margin-bottom: 70px;
+		padding: 10px;
+		position: relative;
+		text-align: center;
+		width: 400px;
+
+		.image-container
+		{
+			align-items: end;
+			display: flex;
+			height: 70%;
+			justify-content: center;
+			width: 335px;
+
+			img
+			{
+				bottom: 1;
+				margin-bottom: 20px;
+				position: absolute;
+			}
+		}
+
+		.text
+		{
+			display: flex;
+			flex-direction: column;
+			font-size: 2em;
+			font-weight: bold;
+			padding: 30px;
+			width: 100%;
+
+			.description, .price .variants span .var1, .price .variants span .var2
+			{
+				font-size: .5em;
+				font-weight: 100;
+			}
+
+			.line
+			{
+				background: var(--white);
+				height: 2px;
+				margin: 20px 0;
+				width: 100%;
+			}
+
+			.price
+			{
+				align-items: center;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				width: 100%;
+
+				.variants
+				{
+					display: flex;
+					flex-direction: row;
+					justify-content: space-between;
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	.page-contents
+	{
+		background: var(--white);
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+
+		.home
+		{
+			display: flex;
+			flex-direction: row;
+			height: 100vh;
+			justify-content: space-between;
+			margin-bottom: clamp(10px, 15vw, 15vw);
+			padding: clamp(1em, 8em, 8em) 0 0 var(--defPadding);
+			width: 100%;
+
+			.left
+			{
+				display: flex;
+				flex-direction: column;
+
+				.title
+				{
+					display: flex;
+					flex-direction: column;
+					font-size: clamp(4em, 5vw, 5vw);
+					font-weight: bold;
+					margin-bottom: 50px;
+					text-shadow: 1px 0 3px var(--black);
+
+					span:nth-child(2)
+					{
+						font-size: .33em;
+						margin-top: 20px;
+						text-shadow: none;
+					}
+				}
+			}
+
+			.right
+			{
+				display: flex;
+				flex-direction: column;
+				pointer-events: none;
+				position: relative;
+				right: 1;
+
+				img
+				{
+					height: clamp(500px, 49vw, 49vw);
+					position: absolute;
+					right: 0;
+
+					&:nth-child(2)
+					{
+						height: clamp(740px, 60vw, 60vw);
+						position: absolute;
+						transform: translate(clamp(15em, 18vw, 30vw), -7em);
+					}
+				}
+			}
+		}
+
+		.about
+		{
+			align-items: center;
+			display: flex;
+			flex-direction: row;
+			margin-bottom: clamp(10px, 15vw, 15vw);
+			padding-right: var(--defPadding);
+			width: 100%;
+
+			.left img
+			{
+				transform: translateX(-1em);
+				width: clamp(350px, 37vw, 37vw);
+			}
+
+			.right
+			{
+				img
+				{
+					display: none;
+					width: clamp(350px, 50vw, 50vw);
+				}
+				
+				.title
+				{
+					font-size: clamp(3.5em, 4.5vw, 4.5vw);
+					font-weight: bold;
+					margin-bottom: 50px;
+					text-shadow: 1px 0 3px var(--black);
+				}
+
+				.description
+				{
+					font-size: 2em;
+					font-weight: 400;
+				}
+			}
+		}
+
+		.best-menu
+		{
+			align-items: center;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			text-align: center;
+			width: 100%;
+
+			.title
+			{
+				align-items: center;
+				display: flex;
+				justify-content: center;
+				margin-bottom: 250px;
+				position: relative;
+				width: 100%;
+
+				.text
+				{
+					background: var(--white);
+					font-size: clamp(3.5em, 4.5vw, 4.5vw);
+					font-weight: bold;
+					padding: 0 30px;
+					position: relative;
+					text-shadow: 1px 0 3px var(--black);
+					width: fit-content;
+					z-index: 1;
+				}
+
+				.line
+				{
+					background: var(--black);
+					display: block;
+					height: 8px;
+					position: absolute;
+					top: 50%;
+					width: 100%;
+					z-index: 0;
+				}
+			}
+
+			.contents
+			{
+				align-items: center;
+				display: flex;
+				flex-direction: column;
+				padding: 0 var(--defPadding) 20px var(--defPadding);
+				width: 100%;
+
+				a.button
+				{
+					background: none;
+					border: .12em solid transparent;
+					border-radius: .4em;
+					box-shadow: none;
+					color: var(--black);
+
+					&:hover
+					{
+						border: .12em solid var(--black);
+					}
+				}
+
+				.contents-cards
+				{
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					justify-content: space-around;
+					width: 100%;
+				}
+			}
+		}
+
+		.page-menu
+		{
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			margin-bottom: 150px;
+			padding: 150px var(--defPadding) 0 var(--defPadding);
+			width: 100dvw;
+
+			a
+			{
+				&.button.button-unselected, &.button.button-selected
+				{
+					border: 2px solid var(--red);
+					border-radius: 5px;
+					background: var(--white);
+					box-shadow: none;
+					color: var(--black);
+					font-size: 1.2em;
+					padding: 10px 30px;
+					position: relative;
+				}
+
+				&.button.button-selected
+				{
+					border: 2px solid transparent;
+					background: var(--red);
+					color: var(--white);
+
+					&:hover
+					{
+						border: 2px solid var(--white);
+					}
+				}
+			}
+
+			.title
+			{
+				font-size: 4em;
+				font-weight: bold;
+				margin-bottom: 50px;
+				text-align: center;
+				width: 100%;
+			}
+
+			.selections
+			{
+				display: flex;
+				flex-direction: row;
+				gap: 20px;
+				justify-content: start;
+				margin-bottom: 20px;
+				width: 100%;
+
+				span
+				{
+					display: flex;
+					font-size: 2.5em;
+					position: absolute;
+					right: 0;
+					top: 0;
+
+					&:nth-child(2)
+					{
+						bottom: 0;
+						display: flex;
+						font-size: 2.5em;
+						position: absolute;
+						right: 0;
+						top: auto;
+						transform: translateY(-20%);
+					}
+				}
+			}
+
+			.sub-selections
+			{
+				display: flex;
+				flex-direction: row;
+				gap: 20px;
+				justify-content: start;
+				margin-bottom: 20px;
+				width: 100%;
+
+				a
+				{
+					font-size: 1em !important;
+					padding: 10px 17px !important;
+				}
+			}
+
+			.contents-card
+			{
+				display: flex;
+				margin-top: 200px;
+				width: 100%;
+
+				.card
+				{
+					margin-bottom: 200px;
+				}
+
+				.class-foods, .class-drinks
+				{
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					height: 100%;
+					justify-content: space-around;
+					margin: 0;
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1000px)
+{
+	:root
+	{
+		/* Paddings */
+		--defPadding: 70px;
+	}
+
+	html, body
+	{
+		.page-contents
+		{
+			.about
+			{
+				flex-direction: column;
+				padding-left: var(--defPadding);
+
+				.left img
+				{
+					display: none;
+				}
+
+				.right
+				{
+					text-align: center;
+
+					img
+					{
+						display: flex;
+						justify-self: center;
+						margin-bottom: 20px;
+					}
+
+					.title
+					{
+						margin-bottom: 20px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 850px)
+{
+	:root
+	{
+		/* Paddings */
+		--defPadding: 40px;
+	}
+}
+
+@media screen and (max-width: 768px)
+{
+	html, body
+	{
+		footer
+		{
+			.contents
+			{
+				flex-direction: column;
+				justify-content: start;
+
+				a.button
+				{
+					justify-content: left;
+					width: clamp(auto, 30em, 30em);
+				}
+
+				div
+				{
+					text-align: left;
+					width: 100%;
+				}
+
+				p.title
+				{
+					text-align: left;
+				}
+
+				.menu a.button
+				{
+					justify-content: left;
+					width: clamp(auto, 30em, 30em);
+				}
+
+				.online-order a.button
+				{
+					justify-content: left;
+				}
+			}
+		}
+	}
+}

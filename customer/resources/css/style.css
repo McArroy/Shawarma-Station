@@ -1,0 +1,476 @@
+:root {
+  /* Colors */
+  --black: rgb(0, 0, 0);
+  --red: rgb(179, 19, 18);
+  --white: rgb(255, 255, 255);
+  /* Paddings */
+  --defPadding: 90px;
+  /* Transitions */
+  --trEaseInOut: all .2s ease-in-out;
+  /* Z-Indexes */
+  --navbar: 999999;
+}
+
+* {
+  box-sizing: border-box;
+  cursor: default;
+  font-family: Montserrat;
+  font-weight: Medium;
+  transition: var(--trEaseInOut);
+}
+
+html, body {
+  margin: 0;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+html a, body a {
+  color: var(--black);
+  cursor: pointer;
+  text-decoration: none;
+}
+html a.button, body a.button {
+  align-items: center;
+  background: var(--red);
+  border-radius: 50em;
+  box-shadow: 0 0.5em 1em 0 rgba(0, 0, 0, 0.2), 0 0.4em 1.2em 0 rgba(0, 0, 0, 0.19);
+  color: var(--white);
+  display: flex;
+  flex-direction: row;
+  font-size: clamp(1em, 1.7vw, 1.7vw);
+  font-weight: bold;
+  height: auto;
+  justify-content: space-between;
+  padding: 1em 2em;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+html a.button:hover, body a.button:hover {
+  box-shadow: none;
+  transform: scale(0.9);
+}
+html a.button.whatsapp, body a.button.whatsapp {
+  gap: 1em;
+}
+html a.button.whatsapp svg, body a.button.whatsapp svg {
+  fill: var(--white);
+  height: 2em;
+}
+html header, body header {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.5);
+  -webkit-backdrop-filter: blur(50px);
+          backdrop-filter: blur(50px);
+  display: flex;
+  font-size: clamp(0.8em, 1vw, 1vw);
+  font-weight: 600;
+  gap: 4.5em;
+  height: 5em;
+  justify-content: center;
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: var(--navbar);
+}
+html header a:hover, html header a.active, body header a:hover, body header a.active {
+  color: var(--red);
+  text-decoration: underline;
+  text-decoration-thickness: 0.2em;
+  text-underline-offset: 0.3em;
+}
+html footer, body footer {
+  background: var(--red);
+  bottom: 1;
+  color: var(--white);
+  display: flex;
+  margin-top: 90px;
+  padding: 30px var(--defPadding) 90px var(--defPadding);
+  position: absolute;
+  width: 100%;
+}
+html footer .contents, body footer .contents {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+html footer .contents a.button, body footer .contents a.button {
+  background: none;
+  border: 0.12em solid transparent;
+  border-radius: 0.5em;
+  box-shadow: none;
+  fill: var(--white);
+  font-size: clamp(1em, 1vw, 1vw);
+  gap: 1em;
+  justify-content: start;
+  padding: 0.7em;
+  width: 100%;
+}
+html footer .contents a.button:hover, body footer .contents a.button:hover {
+  border: 0.12em solid var(--white);
+}
+html footer .contents a.button svg, body footer .contents a.button svg {
+  height: 1.5em;
+}
+html footer .contents div, body footer .contents div {
+  width: 80%;
+}
+html footer .contents div:not(:nth-child(1)), body footer .contents div:not(:nth-child(1)) {
+  text-align: center;
+}
+html footer .contents p.title, body footer .contents p.title {
+  font-size: clamp(1.25em, 1.25vw, 1.25vw);
+  font-weight: bold;
+}
+html footer .contents .menu a.button, body footer .contents .menu a.button {
+  justify-content: center;
+}
+html footer .contents .online-order a.button, body footer .contents .online-order a.button {
+  border: none;
+  justify-content: center;
+}
+html footer .contents .online-order a.button img, body footer .contents .online-order a.button img {
+  cursor: pointer;
+  width: clamp(16em, 1vw, 1vw);
+}
+html .hidden, body .hidden {
+  display: none !important;
+}
+html .card, body .card {
+  align-items: center;
+  aspect-ratio: 1/1;
+  background: var(--red);
+  border-radius: 20px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  color: var(--white);
+  display: flex;
+  flex: 0 1 30%;
+  flex-direction: column;
+  margin-bottom: 70px;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+  width: 400px;
+}
+html .card .image-container, body .card .image-container {
+  align-items: end;
+  display: flex;
+  height: 70%;
+  justify-content: center;
+  width: 335px;
+}
+html .card .image-container img, body .card .image-container img {
+  bottom: 1;
+  margin-bottom: 20px;
+  position: absolute;
+}
+html .card .text, body .card .text {
+  display: flex;
+  flex-direction: column;
+  font-size: 2em;
+  font-weight: bold;
+  padding: 30px;
+  width: 100%;
+}
+html .card .text .description, html .card .text .price .variants span .var1, html .card .text .price .variants span .var2, body .card .text .description, body .card .text .price .variants span .var1, body .card .text .price .variants span .var2 {
+  font-size: 0.5em;
+  font-weight: 100;
+}
+html .card .text .line, body .card .text .line {
+  background: var(--white);
+  height: 2px;
+  margin: 20px 0;
+  width: 100%;
+}
+html .card .text .price, body .card .text .price {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+html .card .text .price .variants, body .card .text .price .variants {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+html .page-contents, body .page-contents {
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+html .page-contents .home, body .page-contents .home {
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  justify-content: space-between;
+  margin-bottom: clamp(10px, 15vw, 15vw);
+  padding: 8em 0 0 var(--defPadding);
+  width: 100%;
+}
+html .page-contents .home .left, body .page-contents .home .left {
+  display: flex;
+  flex-direction: column;
+}
+html .page-contents .home .left .title, body .page-contents .home .left .title {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(4em, 5vw, 5vw);
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-shadow: 1px 0 3px var(--black);
+}
+html .page-contents .home .left .title span:nth-child(2), body .page-contents .home .left .title span:nth-child(2) {
+  font-size: 0.33em;
+  margin-top: 20px;
+  text-shadow: none;
+}
+html .page-contents .home .right, body .page-contents .home .right {
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+  position: relative;
+  right: 1;
+}
+html .page-contents .home .right img, body .page-contents .home .right img {
+  height: clamp(500px, 49vw, 49vw);
+  position: absolute;
+  right: 0;
+}
+html .page-contents .home .right img:nth-child(2), body .page-contents .home .right img:nth-child(2) {
+  height: clamp(740px, 60vw, 60vw);
+  position: absolute;
+  transform: translate(clamp(15em, 18vw, 30vw), -7em);
+}
+html .page-contents .about, body .page-contents .about {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: clamp(10px, 15vw, 15vw);
+  padding-right: var(--defPadding);
+  width: 100%;
+}
+html .page-contents .about .left img, body .page-contents .about .left img {
+  transform: translateX(-1em);
+  width: clamp(350px, 37vw, 37vw);
+}
+html .page-contents .about .right img, body .page-contents .about .right img {
+  display: none;
+  width: clamp(350px, 50vw, 50vw);
+}
+html .page-contents .about .right .title, body .page-contents .about .right .title {
+  font-size: clamp(3.5em, 4.5vw, 4.5vw);
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-shadow: 1px 0 3px var(--black);
+}
+html .page-contents .about .right .description, body .page-contents .about .right .description {
+  font-size: 2em;
+  font-weight: 400;
+}
+html .page-contents .best-menu, body .page-contents .best-menu {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+}
+html .page-contents .best-menu .title, body .page-contents .best-menu .title {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 250px;
+  position: relative;
+  width: 100%;
+}
+html .page-contents .best-menu .title .text, body .page-contents .best-menu .title .text {
+  background: var(--white);
+  font-size: clamp(3.5em, 4.5vw, 4.5vw);
+  font-weight: bold;
+  padding: 0 30px;
+  position: relative;
+  text-shadow: 1px 0 3px var(--black);
+  width: -moz-fit-content;
+  width: fit-content;
+  z-index: 1;
+}
+html .page-contents .best-menu .title .line, body .page-contents .best-menu .title .line {
+  background: var(--black);
+  display: block;
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  z-index: 0;
+}
+html .page-contents .best-menu .contents, body .page-contents .best-menu .contents {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--defPadding) 20px var(--defPadding);
+  width: 100%;
+}
+html .page-contents .best-menu .contents a.button, body .page-contents .best-menu .contents a.button {
+  background: none;
+  border: 0.12em solid transparent;
+  border-radius: 0.4em;
+  box-shadow: none;
+  color: var(--black);
+}
+html .page-contents .best-menu .contents a.button:hover, body .page-contents .best-menu .contents a.button:hover {
+  border: 0.12em solid var(--black);
+}
+html .page-contents .best-menu .contents .contents-cards, body .page-contents .best-menu .contents .contents-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: 100%;
+}
+html .page-contents .page-menu, body .page-contents .page-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 150px;
+  padding: 150px var(--defPadding) 0 var(--defPadding);
+  width: 100dvw;
+}
+html .page-contents .page-menu a.button.button-unselected, html .page-contents .page-menu a.button.button-selected, body .page-contents .page-menu a.button.button-unselected, body .page-contents .page-menu a.button.button-selected {
+  border: 2px solid var(--red);
+  border-radius: 5px;
+  background: var(--white);
+  box-shadow: none;
+  color: var(--black);
+  font-size: 1.2em;
+  padding: 10px 30px;
+  position: relative;
+}
+html .page-contents .page-menu a.button.button-selected, body .page-contents .page-menu a.button.button-selected {
+  border: 2px solid transparent;
+  background: var(--red);
+  color: var(--white);
+}
+html .page-contents .page-menu a.button.button-selected:hover, body .page-contents .page-menu a.button.button-selected:hover {
+  border: 2px solid var(--white);
+}
+html .page-contents .page-menu .title, body .page-contents .page-menu .title {
+  font-size: 4em;
+  font-weight: bold;
+  margin-bottom: 50px;
+  text-align: center;
+  width: 100%;
+}
+html .page-contents .page-menu .selections, body .page-contents .page-menu .selections {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: start;
+  margin-bottom: 20px;
+  width: 100%;
+}
+html .page-contents .page-menu .selections span, body .page-contents .page-menu .selections span {
+  display: flex;
+  font-size: 2.5em;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+html .page-contents .page-menu .selections span:nth-child(2), body .page-contents .page-menu .selections span:nth-child(2) {
+  bottom: 0;
+  display: flex;
+  font-size: 2.5em;
+  position: absolute;
+  right: 0;
+  top: auto;
+  transform: translateY(-20%);
+}
+html .page-contents .page-menu .sub-selections, body .page-contents .page-menu .sub-selections {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: start;
+  margin-bottom: 20px;
+  width: 100%;
+}
+html .page-contents .page-menu .sub-selections a, body .page-contents .page-menu .sub-selections a {
+  font-size: 1em !important;
+  padding: 10px 17px !important;
+}
+html .page-contents .page-menu .contents-card, body .page-contents .page-menu .contents-card {
+  display: flex;
+  margin-top: 200px;
+  width: 100%;
+}
+html .page-contents .page-menu .contents-card .card, body .page-contents .page-menu .contents-card .card {
+  margin-bottom: 200px;
+}
+html .page-contents .page-menu .contents-card .class-foods, html .page-contents .page-menu .contents-card .class-drinks, body .page-contents .page-menu .contents-card .class-foods, body .page-contents .page-menu .contents-card .class-drinks {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: space-around;
+  margin: 0;
+  width: 100%;
+}
+
+@media screen and (max-width: 1000px) {
+  :root {
+    /* Paddings */
+    --defPadding: 70px;
+  }
+  html .page-contents .about, body .page-contents .about {
+    flex-direction: column;
+    padding-left: var(--defPadding);
+  }
+  html .page-contents .about .left img, body .page-contents .about .left img {
+    display: none;
+  }
+  html .page-contents .about .right, body .page-contents .about .right {
+    text-align: center;
+  }
+  html .page-contents .about .right img, body .page-contents .about .right img {
+    display: flex;
+    justify-self: center;
+    margin-bottom: 20px;
+  }
+  html .page-contents .about .right .title, body .page-contents .about .right .title {
+    margin-bottom: 20px;
+  }
+}
+@media screen and (max-width: 850px) {
+  :root {
+    /* Paddings */
+    --defPadding: 40px;
+  }
+}
+@media screen and (max-width: 768px) {
+  html footer .contents, body footer .contents {
+    flex-direction: column;
+    justify-content: start;
+  }
+  html footer .contents a.button, body footer .contents a.button {
+    justify-content: left;
+    width: clamp(auto, 30em, 30em);
+  }
+  html footer .contents div, body footer .contents div {
+    text-align: left;
+    width: 100%;
+  }
+  html footer .contents p.title, body footer .contents p.title {
+    text-align: left;
+  }
+  html footer .contents .menu a.button, body footer .contents .menu a.button {
+    justify-content: left;
+    width: clamp(auto, 30em, 30em);
+  }
+  html footer .contents .online-order a.button, body footer .contents .online-order a.button {
+    justify-content: left;
+  }
+}/*# sourceMappingURL=style.css.map */
