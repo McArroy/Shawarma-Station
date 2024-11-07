@@ -10,6 +10,17 @@
 ### Changelogs
 These changelogs are basically just a summary list of changes that are very important for developers information.
 
+#### UPDATE Version 1.3.0.2 [ Last update: 11/07/2024 ]
+<details>
+<summary>Click to expand</summary>
+
+**[ CUSTOMER ]**
+- Fixed overflow images by cutting them
+- Fixed some typos
+- Enabled responsive-design
+
+</details>
+
 #### UPDATE Version 1.2.0.7 [ Last update: 11/06/2024 ]
 <details>
 <summary>Click to expand</summary>
