@@ -5,6 +5,15 @@
 	--red: rgb(179, 19, 18);
 	--white: rgb(255, 255, 255);
 
+	/* Font Sizes */
+	--fontSize001: clamp(.75em, 1.7vw, 1.7vw);
+	--fontSize002: clamp(.8em, 1vw, 1vw);
+	--fontSize003: clamp(1em, 1vw, 1vw);
+	--fontSize004: clamp(1.25em, 1.25vw, 1.25vw);
+	--fontSize005: clamp(2.5em, 5vw, 5vw);
+	--fontSize006: clamp(2em, 4.5vw, 4.5vw);
+	--fontSize007: clamp(1em, 2.5vw, 2.6vw);
+
 	/* Paddings */
 	--defPadding: 90px;
 
@@ -13,6 +22,8 @@
 
 	/* Z-Indexes */
 	--navbar: 999999;
+	--ones: 1;
+	--zeros: 0;
 }
 
 *
@@ -46,7 +57,7 @@ html, body
 			color: var(--white);
 			display: flex;
 			flex-direction: row;
-			font-size: clamp(1em, 1.7vw, 1.7vw);
+			font-size: var(--fontSize001);
 			font-weight: bold;
 			height: auto;
 			justify-content: space-between;
@@ -78,7 +89,7 @@ html, body
 		background: rgba(255, 255, 255, .5);
 		backdrop-filter: blur(50px);
 		display: flex;
-		font-size: clamp(.8em, 1vw, 1vw);
+		font-size: var(--fontSize002);
 		font-weight: 600;
 		gap: 4.5em;
 		height: clamp(3em, 5em, 5em);
@@ -95,6 +106,11 @@ html, body
 			text-decoration-thickness: .2em;
 			text-underline-offset: .3em;
 		}
+	}
+
+	img
+	{
+		pointer-events: none;
 	}
 
 	footer
@@ -122,7 +138,7 @@ html, body
 				border-radius: .5em;
 				box-shadow: none;
 				fill: var(--white);
-				font-size: clamp(1em, 1vw, 1vw);
+				font-size: var(--fontSize003);
 				gap: 1em;
 				justify-content: start;
 				padding: .7em;
@@ -151,7 +167,7 @@ html, body
 
 			p.title
 			{
-				font-size: clamp(1.25em, 1.25vw, 1.25vw);
+				font-size: var(--fontSize004);
 				font-weight: bold;
 			}
 
@@ -259,15 +275,16 @@ html, body
 		background: var(--white);
 		display: flex;
 		flex-direction: column;
+		overflow: hidden;
 		width: 100%;
 
 		.home
 		{
 			display: flex;
 			flex-direction: row;
-			height: 100vh;
+			height: fit-content;
 			justify-content: space-between;
-			margin-bottom: clamp(10px, 15vw, 15vw);
+			margin-bottom: clamp(110px, 20vw, 20vw);
 			padding: clamp(1em, 8em, 8em) 0 0 var(--defPadding);
 			width: 100%;
 
@@ -275,12 +292,13 @@ html, body
 			{
 				display: flex;
 				flex-direction: column;
+				z-index: var(--ones);
 
 				.title
 				{
 					display: flex;
 					flex-direction: column;
-					font-size: clamp(4em, 5vw, 5vw);
+					font-size: var(--fontSize005);
 					font-weight: bold;
 					margin-bottom: 50px;
 					text-shadow: 1px 0 3px var(--black);
@@ -298,21 +316,19 @@ html, body
 			{
 				display: flex;
 				flex-direction: column;
-				pointer-events: none;
 				position: relative;
 				right: 1;
+				z-index: var(--zeros);
 
 				img
 				{
-					height: clamp(500px, 49vw, 49vw);
+					height: clamp(300px, 49vw, 49vw);
 					position: absolute;
 					right: 0;
 
 					&:nth-child(2)
 					{
-						height: clamp(740px, 60vw, 60vw);
-						position: absolute;
-						transform: translate(clamp(15em, 18vw, 30vw), -7em);
+						transform: translate(-5vw, -2em) scale(1.4);
 					}
 				}
 			}
@@ -343,7 +359,7 @@ html, body
 				
 				.title
 				{
-					font-size: clamp(3.5em, 4.5vw, 4.5vw);
+					font-size: var(--fontSize006);
 					font-weight: bold;
 					margin-bottom: 50px;
 					text-shadow: 1px 0 3px var(--black);
@@ -351,7 +367,7 @@ html, body
 
 				.description
 				{
-					font-size: 2em;
+					font-size: var(--fontSize007);
 					font-weight: 400;
 				}
 			}
@@ -378,7 +394,7 @@ html, body
 				.text
 				{
 					background: var(--white);
-					font-size: clamp(3.5em, 4.5vw, 4.5vw);
+					font-size: var(--fontSize006);
 					font-weight: bold;
 					padding: 0 30px;
 					position: relative;

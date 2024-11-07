@@ -3,12 +3,22 @@
   --black: rgb(0, 0, 0);
   --red: rgb(179, 19, 18);
   --white: rgb(255, 255, 255);
+  /* Font Sizes */
+  --fontSize001: clamp(.75em, 1.7vw, 1.7vw);
+  --fontSize002: clamp(.8em, 1vw, 1vw);
+  --fontSize003: clamp(1em, 1vw, 1vw);
+  --fontSize004: clamp(1.25em, 1.25vw, 1.25vw);
+  --fontSize005: clamp(2.5em, 5vw, 5vw);
+  --fontSize006: clamp(2em, 4.5vw, 4.5vw);
+  --fontSize007: clamp(1em, 2.5vw, 2.6vw);
   /* Paddings */
   --defPadding: 90px;
   /* Transitions */
   --trEaseInOut: all .2s ease-in-out;
   /* Z-Indexes */
   --navbar: 999999;
+  --ones: 1;
+  --zeros: 0;
 }
 
 * {
@@ -40,7 +50,7 @@ html a.button, body a.button {
   color: var(--white);
   display: flex;
   flex-direction: row;
-  font-size: clamp(1em, 1.7vw, 1.7vw);
+  font-size: var(--fontSize001);
   font-weight: bold;
   height: auto;
   justify-content: space-between;
@@ -65,7 +75,7 @@ html header, body header {
   -webkit-backdrop-filter: blur(50px);
           backdrop-filter: blur(50px);
   display: flex;
-  font-size: clamp(0.8em, 1vw, 1vw);
+  font-size: var(--fontSize002);
   font-weight: 600;
   gap: 4.5em;
   height: 5em;
@@ -80,6 +90,9 @@ html header a:hover, html header a.active, body header a:hover, body header a.ac
   text-decoration: underline;
   text-decoration-thickness: 0.2em;
   text-underline-offset: 0.3em;
+}
+html img, body img {
+  pointer-events: none;
 }
 html footer, body footer {
   background: var(--red);
@@ -103,7 +116,7 @@ html footer .contents a.button, body footer .contents a.button {
   border-radius: 0.5em;
   box-shadow: none;
   fill: var(--white);
-  font-size: clamp(1em, 1vw, 1vw);
+  font-size: var(--fontSize003);
   gap: 1em;
   justify-content: start;
   padding: 0.7em;
@@ -122,7 +135,7 @@ html footer .contents div:not(:nth-child(1)), body footer .contents div:not(:nth
   text-align: center;
 }
 html footer .contents p.title, body footer .contents p.title {
-  font-size: clamp(1.25em, 1.25vw, 1.25vw);
+  font-size: var(--fontSize004);
   font-weight: bold;
 }
 html footer .contents .menu a.button, body footer .contents .menu a.button {
@@ -202,25 +215,28 @@ html .page-contents, body .page-contents {
   background: var(--white);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   width: 100%;
 }
 html .page-contents .home, body .page-contents .home {
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  height: -moz-fit-content;
+  height: fit-content;
   justify-content: space-between;
-  margin-bottom: clamp(10px, 15vw, 15vw);
+  margin-bottom: clamp(110px, 20vw, 20vw);
   padding: 8em 0 0 var(--defPadding);
   width: 100%;
 }
 html .page-contents .home .left, body .page-contents .home .left {
   display: flex;
   flex-direction: column;
+  z-index: var(--ones);
 }
 html .page-contents .home .left .title, body .page-contents .home .left .title {
   display: flex;
   flex-direction: column;
-  font-size: clamp(4em, 5vw, 5vw);
+  font-size: var(--fontSize005);
   font-weight: bold;
   margin-bottom: 50px;
   text-shadow: 1px 0 3px var(--black);
@@ -233,19 +249,17 @@ html .page-contents .home .left .title span:nth-child(2), body .page-contents .h
 html .page-contents .home .right, body .page-contents .home .right {
   display: flex;
   flex-direction: column;
-  pointer-events: none;
   position: relative;
   right: 1;
+  z-index: var(--zeros);
 }
 html .page-contents .home .right img, body .page-contents .home .right img {
-  height: clamp(500px, 49vw, 49vw);
+  height: clamp(300px, 49vw, 49vw);
   position: absolute;
   right: 0;
 }
 html .page-contents .home .right img:nth-child(2), body .page-contents .home .right img:nth-child(2) {
-  height: clamp(740px, 60vw, 60vw);
-  position: absolute;
-  transform: translate(clamp(15em, 18vw, 30vw), -7em);
+  transform: translate(-5vw, -2em) scale(1.4);
 }
 html .page-contents .about, body .page-contents .about {
   align-items: center;
@@ -264,13 +278,13 @@ html .page-contents .about .right img, body .page-contents .about .right img {
   width: clamp(350px, 50vw, 50vw);
 }
 html .page-contents .about .right .title, body .page-contents .about .right .title {
-  font-size: clamp(3.5em, 4.5vw, 4.5vw);
+  font-size: var(--fontSize006);
   font-weight: bold;
   margin-bottom: 50px;
   text-shadow: 1px 0 3px var(--black);
 }
 html .page-contents .about .right .description, body .page-contents .about .right .description {
-  font-size: 2em;
+  font-size: var(--fontSize007);
   font-weight: 400;
 }
 html .page-contents .best-menu, body .page-contents .best-menu {
@@ -291,7 +305,7 @@ html .page-contents .best-menu .title, body .page-contents .best-menu .title {
 }
 html .page-contents .best-menu .title .text, body .page-contents .best-menu .title .text {
   background: var(--white);
-  font-size: clamp(3.5em, 4.5vw, 4.5vw);
+  font-size: var(--fontSize006);
   font-weight: bold;
   padding: 0 30px;
   position: relative;
