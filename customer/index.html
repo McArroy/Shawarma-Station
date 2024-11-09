@@ -5,18 +5,39 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>SHAWARMA STATION</title>
 
-		<link rel="stylesheet" href="resources/css/style.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
 
 		<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function()
+			{
+				var randomNum = Math.floor(Math.random() * 100000);
+
+				$("html head").append("<link rel='stylesheet' href='/resources/css/style.css?hash=" + randomNum + "'>");
+				$("html head").append("<link rel='stylesheet' href='/resources/css/style-responsive.css?hash=" + randomNum + "'>");
+				$("html body").append("<script src='/resources/js/script.js?hash=" + randomNum + "'/>");
+			});
+		</script>
 	</head>
 
 	<body>
 		<header>
-			<a href="/#home" title="Beranda">BERANDA</a>
-			<a href="/#menu?query=foods" title="Menu">MENU</a>
-			<a href="/#contact" title="Kontak Kami">KONTAK</a>
+			<a href="/" class="logo" title="Shawarma Station">
+				<img src="/resources/imgs/shawarma_station_logo_transparent.png" alt="shawarma_station_logo_transparent">
+			</a>
+			<div class="container">
+				<a href="/#home" title="Beranda">BERANDA</a>
+				<a href="/#menu?query=foods" title="Menu">MENU</a>
+				<a href="/#contact" title="Kontak Kami">KONTAK</a>
+			</div>
+			<a class="menu-icon" title="Menu">
+				<svg viewBox="0 0 464.205 464.205" width="512" xmlns="http://www.w3.org/2000/svg">
+					<path d="m435.192 406.18h-406.179c-16.024 0-29.013-12.99-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023 0 29.013 12.99 29.013 29.013-.001 16.023-12.99 29.013-29.014 29.013z"></path>
+					<path d="m435.192 261.115h-406.179c-16.024 0-29.013-12.989-29.013-29.012s12.989-29.013 29.013-29.013h406.18c16.023 0 29.013 12.989 29.013 29.013s-12.99 29.012-29.014 29.012z"></path>
+					<path d="m435.192 116.051h-406.179c-16.024 0-29.013-12.989-29.013-29.013s12.989-29.013 29.013-29.013h406.18c16.023 0 29.013 12.989 29.013 29.013s-12.99 29.013-29.014 29.013z"/>
+				</svg>
+			</a>
 		</header>
 
 		<div class="page-contents">
@@ -27,7 +48,10 @@
 						<span>KHAS TIMUR TENGAH</span>
 					</div>
 					<a href="/#menu?query=foods" class="button menu" title="Menu">
-						MENU &#129122;
+						MENU
+						<svg viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+							<path d="m22.707 11.293-7-7a1 1 0 0 0 -1.414 1.414l5.293 5.293h-17.586a1 1 0 0 0 0 2h17.586l-5.293 5.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414z"></path>
+						</svg>
 					</a>
 					<a href="https://wa.me/6288901196963" class="button whatsapp hidden" target="_blank" title="Hubungi kami melalui WhatsApp">
 						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -37,18 +61,18 @@
 					</a>
 				</div>
 				<div class="right">
-					<img src="resources/imgs/ellipse.png?v=1.0.0" alt="ellipse">
-					<img src="resources/imgs/default_kebab.png?v=1.0.0" alt="default_kebab">
+					<img src="/resources/imgs/ellipse.png?v=1.0.0" alt="ellipse">
+					<img src="/resources/imgs/default_kebab.png?v=1.0.0" alt="default_kebab">
 				</div>
 			</div>
 
 			<div class="about">
 				<div class="left">
-					<img src="resources/imgs/about.png?v=1.0.0" alt="about_shawarma_station">
+					<img src="/resources/imgs/about.png?v=1.0.0" alt="about_shawarma_station">
 				</div>
 				<div class="right">
 					<div class="title">KENAPA SHAWARMA<br>STATION?</div>
-					<img src="resources/imgs/about.png?v=1.0.0" alt="about_shawarma_station">
+					<img src="/resources/imgs/about.png?v=1.0.0" alt="about_shawarma_station">
 					<div class="description">Shawarma Station adalah sebuah usaha makanan cepat saji yang fokus pada penjualan shawarma, yang mengutamakan kualitas dan kepuasan pelanggan. Berdiri sejak 2021, Shawarma Station terus berkembang secara signifikan serta beroperasi hingga saat ini.</div>
 				</div>
 			</div>
@@ -62,24 +86,29 @@
 					<div class="contents-cards">
 						<div class="card">
 							<div class="image-container">
-								<img src="resources/imgs/menus/beef_shawarma.png?v=1.0.0" alt="beef_shawarma">
+								<img src="/resources/imgs/menus/beef_shawarma.png?v=1.0.0" alt="beef_shawarma">
 							</div>
 							<div class="text">Beef Shawarma</div>
 						</div>
 						<div class="card">
 							<div class="image-container">
-								<img src="resources/imgs/menus/chicken_shawarma.png?v=1.0.0" alt="chicken_shawarma">
+								<img src="/resources/imgs/menus/chicken_shawarma.png?v=1.0.0" alt="chicken_shawarma">
 							</div>
 							<div class="text">Chicken Shawarma</div>
 						</div>
 						<div class="card">
 							<div class="image-container">
-								<img src="resources/imgs/menus/chicken_rice_mandhi.png?v=1.0.0" alt="chicken_rice_mandhi">
+								<img src="/resources/imgs/menus/chicken_rice_mandhi.png?v=1.0.0" alt="chicken_rice_mandhi">
 							</div>
 							<div class="text">Chicken Rice Mandhi</div>
 						</div>
 					</div>
-					<a href="/#menu?query=foods" class="button" title="Lihat menu lainnya">MENU LAINNYA &#129122;</a>
+					<a href="/#menu?query=foods" class="button" title="Lihat menu lainnya">
+						MENU LAINNYA
+						<svg viewBox="0 0 24 24" width="512" xmlns="http://www.w3.org/2000/svg">
+							<path d="m22.707 11.293-7-7a1 1 0 0 0 -1.414 1.414l5.293 5.293h-17.586a1 1 0 0 0 0 2h17.586l-5.293 5.293a1 1 0 1 0 1.414 1.414l7-7a1 1 0 0 0 0-1.414z"></path>
+						</svg>
+					</a>
 				</div>
 			</div>
 
@@ -106,7 +135,7 @@
 					<div class="class-foods">
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/beef_shawarma.png?v=1.0.0" alt="beef_shawarma">
+								<img src="/resources/imgs/menus/beef_shawarma.png?v=1.0.0" alt="beef_shawarma">
 							</div>
 							<div class="text">
 								Beef Shawarma
@@ -117,7 +146,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/chicken_shawarma.png?v=1.0.0" alt="chicken_shawarma">
+								<img src="/resources/imgs/menus/chicken_shawarma.png?v=1.0.0" alt="chicken_shawarma">
 							</div>
 							<div class="text">
 								Chicken Shawarma
@@ -128,7 +157,7 @@
 						</div>
 						<div class="card foods-subtypes-package">
 							<div class="image-container">
-								<img src="resources/imgs/menus/chicken_rice_mandhi.png?v=1.0.0" alt="chicken_rice_mandhi">
+								<img src="/resources/imgs/menus/chicken_rice_mandhi.png?v=1.0.0" alt="chicken_rice_mandhi">
 							</div>
 							<div class="text">
 								Chicken Rice Mandhi
@@ -149,7 +178,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_eggs.png?v=1.0.0" alt="sandwich_eggs">
+								<img src="/resources/imgs/menus/sandwich_eggs.png?v=1.0.0" alt="sandwich_eggs">
 							</div>
 							<div class="text">
 								Sandwich Eggs
@@ -160,7 +189,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_beef_liver.png?v=1.0.0" alt="sandwich_beef_liver">
+								<img src="/resources/imgs/menus/sandwich_beef_liver.png?v=1.0.0" alt="sandwich_beef_liver">
 							</div>
 							<div class="text">
 								Sandwich Beef Liver
@@ -171,7 +200,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_chicken_liver.png?v=1.0.0" alt="sandwich_chicken_liver">
+								<img src="/resources/imgs/menus/sandwich_chicken_liver.png?v=1.0.0" alt="sandwich_chicken_liver">
 							</div>
 							<div class="text">
 								Sandwich Chicken Liver
@@ -182,7 +211,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_chicken.png?v=1.0.0" alt="sandwich_chicken">
+								<img src="/resources/imgs/menus/sandwich_chicken.png?v=1.0.0" alt="sandwich_chicken">
 							</div>
 							<div class="text">
 								Sandwich Chicken
@@ -193,7 +222,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_beef.png?v=1.0.0" alt="sandwich_beef">
+								<img src="/resources/imgs/menus/sandwich_beef.png?v=1.0.0" alt="sandwich_beef">
 							</div>
 							<div class="text">
 								Sandwich Beef
@@ -204,7 +233,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_tuna.png?v=1.0.0" alt="sandwich_tuna">
+								<img src="/resources/imgs/menus/sandwich_tuna.png?v=1.0.0" alt="sandwich_tuna">
 							</div>
 							<div class="text">
 								Sandwich Tuna
@@ -215,7 +244,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_shaksuka.png?v=1.0.0" alt="sandwich_shaksuka">
+								<img src="/resources/imgs/menus/sandwich_shaksuka.png?v=1.0.0" alt="sandwich_shaksuka">
 							</div>
 							<div class="text">
 								Sandwich Shaksuka
@@ -226,7 +255,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/sandwich_cheese.png?v=1.0.0" alt="sandwich_cheese">
+								<img src="/resources/imgs/menus/sandwich_cheese.png?v=1.0.0" alt="sandwich_cheese">
 							</div>
 							<div class="text">
 								Sandwich Cheese
@@ -237,7 +266,7 @@
 						</div>
 						<div class="card foods-subtypes-burgers">
 							<div class="image-container">
-								<img src="resources/imgs/menus/cheese_beef_burger.png?v=1.0.0" alt="cheese_beef_burger">
+								<img src="/resources/imgs/menus/cheese_beef_burger.png?v=1.0.0" alt="cheese_beef_burger">
 							</div>
 							<div class="text">
 								Cheese Beef Burger
@@ -258,7 +287,7 @@
 						</div>
 						<div class="card foods-subtypes-package">
 							<div class="image-container">
-								<img src="resources/imgs/menus/shawarma.png?v=1.0.0" alt="shawarma">
+								<img src="/resources/imgs/menus/shawarma.png?v=1.0.0" alt="shawarma">
 							</div>
 							<div class="text">
 								Shawarma
@@ -280,7 +309,7 @@
 						</div>
 						<div class="card foods-subtypes-sandwich">
 							<div class="image-container">
-								<img src="resources/imgs/menus/haloumi_wrap.png?v=1.0.0" alt="haloumi_wrap">
+								<img src="/resources/imgs/menus/haloumi_wrap.png?v=1.0.0" alt="haloumi_wrap">
 							</div>
 							<div class="text">
 								Haloumi Wrap
@@ -291,7 +320,7 @@
 						</div>
 						<div class="card foods-subtypes-burgers">
 							<div class="image-container">
-								<img src="resources/imgs/menus/cheese_hotdog.png?v=1.0.0" alt="cheese_hotdog">
+								<img src="/resources/imgs/menus/cheese_hotdog.png?v=1.0.0" alt="cheese_hotdog">
 							</div>
 							<div class="text">
 								Cheese Hotdog
@@ -312,7 +341,7 @@
 						</div>
 						<div class="card foods-subtypes-burgers">
 							<div class="image-container">
-								<img src="resources/imgs/menus/phily_cheese_steak.png?v=1.0.0" alt="phily_cheese_steak">
+								<img src="/resources/imgs/menus/phily_cheese_steak.png?v=1.0.0" alt="phily_cheese_steak">
 							</div>
 							<div class="text">
 								Phily Cheese Steak
@@ -333,7 +362,7 @@
 						</div>
 						<div class="card foods-subtypes-burgers">
 							<div class="image-container">
-								<img src="resources/imgs/menus/phily_cheese_chicken.png?v=1.0.0" alt="phily_cheese_chicken">
+								<img src="/resources/imgs/menus/phily_cheese_chicken.png?v=1.0.0" alt="phily_cheese_chicken">
 							</div>
 							<div class="text">
 								Phily Cheese Chicken
@@ -354,7 +383,7 @@
 						</div>
 						<div class="card foods-subtypes-sideorders">
 							<div class="image-container">
-								<img src="resources/imgs/menus/nachos_jalapeno.png?v=1.0.0" alt="nachos_jalapeno">
+								<img src="/resources/imgs/menus/nachos_jalapeno.png?v=1.0.0" alt="nachos_jalapeno">
 							</div>
 							<div class="text">
 								Nachos Jalapeno
@@ -366,7 +395,7 @@
 						</div>
 						<div class="card foods-subtypes-sideorders">
 							<div class="image-container">
-								<img src="resources/imgs/menus/french_fries.png?v=1.0.0" alt="french_fries">
+								<img src="/resources/imgs/menus/french_fries.png?v=1.0.0" alt="french_fries">
 							</div>
 							<div class="text">
 								French Fries
@@ -378,7 +407,7 @@
 						</div>
 						<div class="card foods-subtypes-sideorders">
 							<div class="image-container">
-								<img src="resources/imgs/menus/cheese_fries.png?v=1.0.0" alt="cheese_fries">
+								<img src="/resources/imgs/menus/cheese_fries.png?v=1.0.0" alt="cheese_fries">
 							</div>
 							<div class="text">
 								Cheese Fries
@@ -390,7 +419,7 @@
 						</div>
 						<div class="card foods-subtypes-sideorders">
 							<div class="image-container">
-								<img src="resources/imgs/menus/french_fries_loaded.png?v=1.0.0" alt="french_fries_loaded">
+								<img src="/resources/imgs/menus/french_fries_loaded.png?v=1.0.0" alt="french_fries_loaded">
 							</div>
 							<div class="text">
 								French Fries Loaded
@@ -402,7 +431,7 @@
 						</div>
 						<div class="card foods-subtypes-sideorders">
 							<div class="image-container">
-								<img src="resources/imgs/menus/creme_caramel.png?v=1.0.0" alt="creme_caramel">
+								<img src="/resources/imgs/menus/creme_caramel.png?v=1.0.0" alt="creme_caramel">
 							</div>
 							<div class="text">
 								Creme Caramel
@@ -417,7 +446,7 @@
 					<div class="class-drinks">
 						<div class="card">
 							<div class="image-container">
-								<img src="resources/imgs/menus/mineral_water.png?v=1.0.0" alt="mineral_water">
+								<img src="/resources/imgs/menus/mineral_water.png?v=1.0.0" alt="mineral_water">
 							</div>
 							<div class="text">
 								Mineral Water
@@ -427,7 +456,7 @@
 						</div>
 						<div class="card">
 							<div class="image-container">
-								<img src="resources/imgs/menus/soft_drink.png?v=1.0.0" alt="soft_drink">
+								<img src="/resources/imgs/menus/soft_drink.png?v=1.0.0" alt="soft_drink">
 							</div>
 							<div class="text">
 								Soft Drink
@@ -437,7 +466,7 @@
 						</div>
 						<div class="card">
 							<div class="image-container">
-								<img src="resources/imgs/menus/c1000.png?v=1.0.0" alt="c1000">
+								<img src="/resources/imgs/menus/c1000.png?v=1.0.0" alt="c1000">
 							</div>
 							<div class="text">
 								C1000
@@ -447,7 +476,7 @@
 						</div>
 						<div class="card">
 							<div class="image-container">
-								<img src="resources/imgs/menus/fresh_juice.png?v=1.0.0" alt="fresh_juice">
+								<img src="/resources/imgs/menus/fresh_juice.png?v=1.0.0" alt="fresh_juice">
 							</div>
 							<div class="text">
 								Fresh Juice
@@ -493,15 +522,13 @@
 				<div class="online-order">
 					<p class="title">PEMESANAN ONLINE</p>
 					<a href="https://r.grab.com/g/6-20241020_074706_f2a1a56ce5297a0c_MEXMPS-6-C3CKGP6BNENGEE" class="button" target="_blank" title="Pesan melalui GrabFood">
-						<img src="resources/imgs/grabfood_logo.png?v=1.0.0" alt="grabfood_logo">
+						<img src="/resources/imgs/grabfood_logo.png?v=1.0.0" alt="grabfood_logo">
 					</a>
 					<a href="https://gofood.link/a/Bxx6r8W" class="button" target="_blank" title="Pesan melalui GoFood">
-						<img src="resources/imgs/gofood_logo.png?v=1.0.0" alt="gofood_logo">
+						<img src="/resources/imgs/gofood_logo.png?v=1.0.0" alt="gofood_logo">
 					</a>
 				</div>
 			</div>
 		</footer>
-
-		<script src="resources/js/script.js"></script>
 	</body>
 </html>
