@@ -17,7 +17,7 @@ $(document).ready(function()
 
 	function resetNavBarButtons()
 	{
-		$("body header a").removeClass("active");
+		$("body header .container a").removeClass("active");
 		$("html, body").animate({ scrollTop: 0 }, 20);
 	}
 
@@ -35,7 +35,7 @@ $(document).ready(function()
 	{
 		resetNavBarButtons();
 
-		$("body header a[href='/#home']").addClass("active");
+		$("body header .container a[href='/#home']").addClass("active");
 
 		// Make sure reset the hash if page address is not valid
 		window.location.hash = "#home";
@@ -143,7 +143,7 @@ $(document).ready(function()
 
 		resetNavBarButtons();
 
-		$("body header a[href='/#menu?query=foods']").addClass("active");
+		$("body header .container a[href='/#menu?query=foods']").addClass("active");
 
 		disabledPageHome();
 
@@ -189,7 +189,7 @@ $(document).ready(function()
 	{
 		resetNavBarButtons();
 
-		$("body header a[href='/#contact']").addClass("active");
+		$("body header .container a[href='/#contact']").addClass("active");
 
 		toggleVisibility("body .page-contents .home .left a.button.menu", false);
 		toggleVisibility("body .page-contents .home .left a.button.whatsapp", true);
@@ -215,5 +215,27 @@ $(document).ready(function()
 	$(window).on("hashchange", function()
 	{
 		checkHash();
+	});
+
+	$("body header .menu-icon").on("click", function()
+	{
+		if ($("body header .menu-icon").hasClass("active"))
+		{
+			$("body header .menu-icon").removeClass("active");
+			$("body header .container").removeClass("active-mobile");
+		}
+		else
+		{
+			$("body header .menu-icon").addClass("active");
+			$("body header .container").addClass("active-mobile");
+		}
+	});
+
+	$("body header .container a").on("click", function()
+	{
+		if ($("body header .menu-icon").hasClass("active"))
+		{
+			$("body header .menu-icon").click();
+		}
 	});
 });
