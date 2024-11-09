@@ -1,16 +1,19 @@
-# Shawarma Station
+# Shawarma Station <img align="right" width="128px" src="https://github.com/McArroy/Shawarma-Station/blob/main/customer/resources/imgs/shawarma_station_logo_transparent.png" title="Shawarma Station - Logo" alt="shawarma_station_logo"/>
+A website to help Shawarma Station customers to view and order their food more easily as well as helping cashier to add Shawarma Station menus or write customer orders.
 
 ## What is this?
-
+Shawarma Station is a website designed by IPB Vocational School Students from the Software Engineer Study Program with the aim of helping Shawarma Station customers to view and order their food more easily and also helping cashier to add Shawarma Station menus or write customer orders.
 
 ## Goals of the project
-
+- Making it easier for Shawarma Station customers to view the menu
+- Making it easier for Shawarma Station customers to order their food than before because Shawarma Station only has a piece of paper to see the entire menu
+- Making it easier for Shawarma Station cashier to add, delete, and also find out what food is sold at Shawarma Station every day and how much money they get
 
 ## Developer Informations
 ### Changelogs
 These changelogs are basically just a summary list of changes that are very important for developers information.
 
-#### UPDATE Version 1.3.0.5 [ Last update: 11/09/2024 ]
+#### UPDATE Version 1.3.0.7 [ Last update: 11/09/2024 ]
 <details>
 <summary>Click to expand</summary>
 
