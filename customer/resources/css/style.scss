@@ -10,9 +10,10 @@
 	--fontSize002: clamp(.8em, 1vw, 1vw);
 	--fontSize003: clamp(1em, 1vw, 1vw);
 	--fontSize004: clamp(1.25em, 1.25vw, 1.25vw);
-	--fontSize005: clamp(2.5em, 5vw, 5vw);
-	--fontSize006: clamp(2em, 4.5vw, 4.5vw);
+	--fontSize005: clamp(2.2em, 5vw, 5vw);
+	--fontSize006: clamp(1.7em, 4.5vw, 4.5vw);
 	--fontSize007: clamp(1em, 2.5vw, 2.6vw);
+	--fontSize008: clamp(1em, 2vw, 2.1vw);
 
 	/* Paddings */
 	--defPadding: 90px;
@@ -80,6 +81,15 @@ html, body
 					height: 2em;
 				}
 			}
+
+			svg
+			{
+				fill: var(--white);
+				height: fit-content;
+				margin-left: 6px;
+				pointer-events: none;
+				width: 1.2em;
+			}
 		}
 	}
 
@@ -91,7 +101,6 @@ html, body
 		display: flex;
 		font-size: var(--fontSize002);
 		font-weight: 600;
-		gap: 4.5em;
 		height: clamp(3em, 5em, 5em);
 		justify-content: center;
 		position: fixed;
@@ -99,12 +108,61 @@ html, body
 		width: 100%;
 		z-index: var(--navbar);
 
-		a:hover, a.active
+		a.logo
 		{
-			color: var(--red);
-			text-decoration: underline;
-			text-decoration-thickness: .2em;
-			text-underline-offset: .3em;
+			display: none;
+			height: 150%;
+			position: absolute;
+
+			img
+			{
+				height: 100%;
+			}
+		}
+
+		.container
+		{
+			align-items: center;
+			display: flex;
+			gap: 4.5em;
+			height: 100%;
+			justify-content: center;
+			position: relative;
+			text-align: center;
+			width: 100%;
+
+			a:hover, a.active
+			{
+				color: var(--red);
+				text-decoration: underline;
+				text-decoration-thickness: .2em;
+				text-underline-offset: .3em;
+			}
+		}
+
+		.menu-icon
+		{
+			cursor: pointer;
+			display: none;
+			margin-right: var(--defPadding);
+			position: absolute;
+			right: 0;
+			width: 2em;
+
+			&:hover
+			{
+				svg
+				{
+					fill: var(--red);
+				}
+			}
+
+			svg
+			{
+				height: fit-content;
+				pointer-events: none;
+				width: 100%;
+			}
 		}
 	}
 
@@ -198,33 +256,31 @@ html, body
 	.card
 	{
 		align-items: center;
-		aspect-ratio: 1/1;
+		aspect-ratio: 1/1.1;
 		background: var(--red);
-		border-radius: 20px;
-		box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19);
+		border-radius: 1.5em;
+		box-shadow: 0 .6em 1em 0 rgba(0, 0, 0, .2), 0 .6em 1.3em 0 rgba(0, 0, 0, .19);
 		color: var(--white);
 		display: flex;
 		flex: 0 1 30%;
 		flex-direction: column;
-		margin-bottom: 70px;
-		padding: 10px;
+		padding: 1em;
 		position: relative;
 		text-align: center;
-		width: 400px;
 
 		.image-container
 		{
 			align-items: end;
+			bottom: 1;
 			display: flex;
 			height: 70%;
 			justify-content: center;
-			width: 335px;
 
 			img
 			{
-				bottom: 1;
-				margin-bottom: 20px;
+				margin-bottom: clamp(.5em, 2vw, 2vw);
 				position: absolute;
+				width: clamp(10em, 17vw, 17vw);
 			}
 		}
 
@@ -232,7 +288,7 @@ html, body
 		{
 			display: flex;
 			flex-direction: column;
-			font-size: 2em;
+			font-size: var(--fontSize008);
 			font-weight: bold;
 			padding: 30px;
 			width: 100%;
@@ -301,7 +357,7 @@ html, body
 					font-size: var(--fontSize005);
 					font-weight: bold;
 					margin-bottom: 50px;
-					text-shadow: 1px 0 3px var(--black);
+					text-shadow: 1px 0 2.5px var(--black);
 
 					span:nth-child(2)
 					{
@@ -322,7 +378,7 @@ html, body
 
 				img
 				{
-					height: clamp(300px, 49vw, 49vw);
+					height: clamp(250px, 49vw, 49vw);
 					position: absolute;
 					right: 0;
 
@@ -346,7 +402,7 @@ html, body
 			.left img
 			{
 				transform: translateX(-1em);
-				width: clamp(350px, 37vw, 37vw);
+				width: clamp(250px, 37vw, 37vw);
 			}
 
 			.right
@@ -354,7 +410,9 @@ html, body
 				img
 				{
 					display: none;
-					width: clamp(350px, 50vw, 50vw);
+					justify-self: center;
+					margin-bottom: 20px;
+					width: clamp(250px, 50vw, 50vw);
 				}
 				
 				.title
@@ -362,7 +420,6 @@ html, body
 					font-size: var(--fontSize006);
 					font-weight: bold;
 					margin-bottom: 50px;
-					text-shadow: 1px 0 3px var(--black);
 				}
 
 				.description
@@ -387,7 +444,7 @@ html, body
 				align-items: center;
 				display: flex;
 				justify-content: center;
-				margin-bottom: 250px;
+				margin-bottom: clamp(100px, 16vw, 16vw);
 				position: relative;
 				width: 100%;
 
@@ -396,9 +453,8 @@ html, body
 					background: var(--white);
 					font-size: var(--fontSize006);
 					font-weight: bold;
-					padding: 0 30px;
+					padding: 0 .6em;
 					position: relative;
-					text-shadow: 1px 0 3px var(--black);
 					width: fit-content;
 					z-index: 1;
 				}
@@ -407,9 +463,9 @@ html, body
 				{
 					background: var(--black);
 					display: block;
-					height: 8px;
+					height: .4em;
 					position: absolute;
-					top: 50%;
+					top: 1;
 					width: 100%;
 					z-index: 0;
 				}
@@ -420,7 +476,7 @@ html, body
 				align-items: center;
 				display: flex;
 				flex-direction: column;
-				padding: 0 var(--defPadding) 20px var(--defPadding);
+				padding: 0 var(--defPadding) 0 var(--defPadding);
 				width: 100%;
 
 				a.button
@@ -430,10 +486,17 @@ html, body
 					border-radius: .4em;
 					box-shadow: none;
 					color: var(--black);
+					font-size: var(--fontSize007);
+					margin-top: 90px;
 
 					&:hover
 					{
 						border: .12em solid var(--black);
+					}
+
+					svg
+					{
+						fill: var(--black);
 					}
 				}
 
@@ -537,6 +600,7 @@ html, body
 				gap: 20px;
 				justify-content: start;
 				margin-bottom: 20px;
+				overflow-x: auto;
 				width: 100%;
 
 				a
@@ -572,97 +636,30 @@ html, body
 	}
 }
 
-@media screen and (max-width: 1000px)
+/* Animations */
+@keyframes menuSlideIn
 {
-	:root
+	from
 	{
-		/* Paddings */
-		--defPadding: 70px;
+		transform: translate(100%, 80%);
 	}
 
-	html, body
+	to
 	{
-		.page-contents
-		{
-			.about
-			{
-				flex-direction: column;
-				padding-left: var(--defPadding);
-
-				.left img
-				{
-					display: none;
-				}
-
-				.right
-				{
-					text-align: center;
-
-					img
-					{
-						display: flex;
-						justify-self: center;
-						margin-bottom: 20px;
-					}
-
-					.title
-					{
-						margin-bottom: 20px;
-					}
-				}
-			}
-		}
+		transform: translate(0, 80%);
 	}
 }
 
-@media screen and (max-width: 850px)
+@keyframes menuSlideOut
 {
-	:root
+	from
 	{
-		/* Paddings */
-		--defPadding: 40px;
+		transform: translate(0, 80%);
 	}
-}
 
-@media screen and (max-width: 768px)
-{
-	html, body
+	to
 	{
-		footer
-		{
-			.contents
-			{
-				flex-direction: column;
-				justify-content: start;
-
-				a.button
-				{
-					justify-content: left;
-					width: clamp(auto, 30em, 30em);
-				}
-
-				div
-				{
-					text-align: left;
-					width: 100%;
-				}
-
-				p.title
-				{
-					text-align: left;
-				}
-
-				.menu a.button
-				{
-					justify-content: left;
-					width: clamp(auto, 30em, 30em);
-				}
-
-				.online-order a.button
-				{
-					justify-content: left;
-				}
-			}
-		}
+		transform: translate(100%, 80%);
+		visibility: hidden;
 	}
 }

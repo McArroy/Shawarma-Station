@@ -8,9 +8,10 @@
   --fontSize002: clamp(.8em, 1vw, 1vw);
   --fontSize003: clamp(1em, 1vw, 1vw);
   --fontSize004: clamp(1.25em, 1.25vw, 1.25vw);
-  --fontSize005: clamp(2.5em, 5vw, 5vw);
-  --fontSize006: clamp(2em, 4.5vw, 4.5vw);
+  --fontSize005: clamp(2.2em, 5vw, 5vw);
+  --fontSize006: clamp(1.7em, 4.5vw, 4.5vw);
   --fontSize007: clamp(1em, 2.5vw, 2.6vw);
+  --fontSize008: clamp(1em, 2vw, 2.1vw);
   /* Paddings */
   --defPadding: 90px;
   /* Transitions */
@@ -69,6 +70,14 @@ html a.button.whatsapp svg, body a.button.whatsapp svg {
   fill: var(--white);
   height: 2em;
 }
+html a.button svg, body a.button svg {
+  fill: var(--white);
+  height: -moz-fit-content;
+  height: fit-content;
+  margin-left: 6px;
+  pointer-events: none;
+  width: 1.2em;
+}
 html header, body header {
   align-items: center;
   background: rgba(255, 255, 255, 0.5);
@@ -77,7 +86,6 @@ html header, body header {
   display: flex;
   font-size: var(--fontSize002);
   font-weight: 600;
-  gap: 4.5em;
   height: 5em;
   justify-content: center;
   position: fixed;
@@ -85,11 +93,46 @@ html header, body header {
   width: 100%;
   z-index: var(--navbar);
 }
-html header a:hover, html header a.active, body header a:hover, body header a.active {
+html header a.logo, body header a.logo {
+  display: none;
+  height: 150%;
+  position: absolute;
+}
+html header a.logo img, body header a.logo img {
+  height: 100%;
+}
+html header .container, body header .container {
+  align-items: center;
+  display: flex;
+  gap: 4.5em;
+  height: 100%;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+html header .container a:hover, html header .container a.active, body header .container a:hover, body header .container a.active {
   color: var(--red);
   text-decoration: underline;
   text-decoration-thickness: 0.2em;
   text-underline-offset: 0.3em;
+}
+html header .menu-icon, body header .menu-icon {
+  cursor: pointer;
+  display: none;
+  margin-right: var(--defPadding);
+  position: absolute;
+  right: 0;
+  width: 2em;
+}
+html header .menu-icon:hover svg, body header .menu-icon:hover svg {
+  fill: var(--red);
+}
+html header .menu-icon svg, body header .menu-icon svg {
+  height: -moz-fit-content;
+  height: fit-content;
+  pointer-events: none;
+  width: 100%;
 }
 html img, body img {
   pointer-events: none;
@@ -154,36 +197,34 @@ html .hidden, body .hidden {
 }
 html .card, body .card {
   align-items: center;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1/1.1;
   background: var(--red);
-  border-radius: 20px;
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 1.5em;
+  box-shadow: 0 0.6em 1em 0 rgba(0, 0, 0, 0.2), 0 0.6em 1.3em 0 rgba(0, 0, 0, 0.19);
   color: var(--white);
   display: flex;
   flex: 0 1 30%;
   flex-direction: column;
-  margin-bottom: 70px;
-  padding: 10px;
+  padding: 1em;
   position: relative;
   text-align: center;
-  width: 400px;
 }
 html .card .image-container, body .card .image-container {
   align-items: end;
+  bottom: 1;
   display: flex;
   height: 70%;
   justify-content: center;
-  width: 335px;
 }
 html .card .image-container img, body .card .image-container img {
-  bottom: 1;
-  margin-bottom: 20px;
+  margin-bottom: clamp(0.5em, 2vw, 2vw);
   position: absolute;
+  width: clamp(10em, 17vw, 17vw);
 }
 html .card .text, body .card .text {
   display: flex;
   flex-direction: column;
-  font-size: 2em;
+  font-size: var(--fontSize008);
   font-weight: bold;
   padding: 30px;
   width: 100%;
@@ -239,7 +280,7 @@ html .page-contents .home .left .title, body .page-contents .home .left .title {
   font-size: var(--fontSize005);
   font-weight: bold;
   margin-bottom: 50px;
-  text-shadow: 1px 0 3px var(--black);
+  text-shadow: 1px 0 2.5px var(--black);
 }
 html .page-contents .home .left .title span:nth-child(2), body .page-contents .home .left .title span:nth-child(2) {
   font-size: 0.33em;
@@ -254,7 +295,7 @@ html .page-contents .home .right, body .page-contents .home .right {
   z-index: var(--zeros);
 }
 html .page-contents .home .right img, body .page-contents .home .right img {
-  height: clamp(300px, 49vw, 49vw);
+  height: clamp(250px, 49vw, 49vw);
   position: absolute;
   right: 0;
 }
@@ -271,17 +312,18 @@ html .page-contents .about, body .page-contents .about {
 }
 html .page-contents .about .left img, body .page-contents .about .left img {
   transform: translateX(-1em);
-  width: clamp(350px, 37vw, 37vw);
+  width: clamp(250px, 37vw, 37vw);
 }
 html .page-contents .about .right img, body .page-contents .about .right img {
   display: none;
-  width: clamp(350px, 50vw, 50vw);
+  justify-self: center;
+  margin-bottom: 20px;
+  width: clamp(250px, 50vw, 50vw);
 }
 html .page-contents .about .right .title, body .page-contents .about .right .title {
   font-size: var(--fontSize006);
   font-weight: bold;
   margin-bottom: 50px;
-  text-shadow: 1px 0 3px var(--black);
 }
 html .page-contents .about .right .description, body .page-contents .about .right .description {
   font-size: var(--fontSize007);
@@ -299,7 +341,7 @@ html .page-contents .best-menu .title, body .page-contents .best-menu .title {
   align-items: center;
   display: flex;
   justify-content: center;
-  margin-bottom: 250px;
+  margin-bottom: clamp(100px, 16vw, 16vw);
   position: relative;
   width: 100%;
 }
@@ -307,9 +349,8 @@ html .page-contents .best-menu .title .text, body .page-contents .best-menu .tit
   background: var(--white);
   font-size: var(--fontSize006);
   font-weight: bold;
-  padding: 0 30px;
+  padding: 0 0.6em;
   position: relative;
-  text-shadow: 1px 0 3px var(--black);
   width: -moz-fit-content;
   width: fit-content;
   z-index: 1;
@@ -317,9 +358,9 @@ html .page-contents .best-menu .title .text, body .page-contents .best-menu .tit
 html .page-contents .best-menu .title .line, body .page-contents .best-menu .title .line {
   background: var(--black);
   display: block;
-  height: 8px;
+  height: 0.4em;
   position: absolute;
-  top: 50%;
+  top: 1;
   width: 100%;
   z-index: 0;
 }
@@ -327,7 +368,7 @@ html .page-contents .best-menu .contents, body .page-contents .best-menu .conten
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding: 0 var(--defPadding) 20px var(--defPadding);
+  padding: 0 var(--defPadding) 0 var(--defPadding);
   width: 100%;
 }
 html .page-contents .best-menu .contents a.button, body .page-contents .best-menu .contents a.button {
@@ -336,9 +377,14 @@ html .page-contents .best-menu .contents a.button, body .page-contents .best-men
   border-radius: 0.4em;
   box-shadow: none;
   color: var(--black);
+  font-size: var(--fontSize007);
+  margin-top: 90px;
 }
 html .page-contents .best-menu .contents a.button:hover, body .page-contents .best-menu .contents a.button:hover {
   border: 0.12em solid var(--black);
+}
+html .page-contents .best-menu .contents a.button svg, body .page-contents .best-menu .contents a.button svg {
+  fill: var(--black);
 }
 html .page-contents .best-menu .contents .contents-cards, body .page-contents .best-menu .contents .contents-cards {
   display: flex;
@@ -417,6 +463,7 @@ html .page-contents .page-menu .sub-selections, body .page-contents .page-menu .
   gap: 20px;
   justify-content: start;
   margin-bottom: 20px;
+  overflow-x: auto;
   width: 100%;
 }
 html .page-contents .page-menu .sub-selections a, body .page-contents .page-menu .sub-selections a {
@@ -441,57 +488,21 @@ html .page-contents .page-menu .contents-card .class-foods, html .page-contents 
   width: 100%;
 }
 
-@media screen and (max-width: 1000px) {
-  :root {
-    /* Paddings */
-    --defPadding: 70px;
+/* Animations */
+@keyframes menuSlideIn {
+  from {
+    transform: translate(100%, 80%);
   }
-  html .page-contents .about, body .page-contents .about {
-    flex-direction: column;
-    padding-left: var(--defPadding);
-  }
-  html .page-contents .about .left img, body .page-contents .about .left img {
-    display: none;
-  }
-  html .page-contents .about .right, body .page-contents .about .right {
-    text-align: center;
-  }
-  html .page-contents .about .right img, body .page-contents .about .right img {
-    display: flex;
-    justify-self: center;
-    margin-bottom: 20px;
-  }
-  html .page-contents .about .right .title, body .page-contents .about .right .title {
-    margin-bottom: 20px;
+  to {
+    transform: translate(0, 80%);
   }
 }
-@media screen and (max-width: 850px) {
-  :root {
-    /* Paddings */
-    --defPadding: 40px;
+@keyframes menuSlideOut {
+  from {
+    transform: translate(0, 80%);
   }
-}
-@media screen and (max-width: 768px) {
-  html footer .contents, body footer .contents {
-    flex-direction: column;
-    justify-content: start;
-  }
-  html footer .contents a.button, body footer .contents a.button {
-    justify-content: left;
-    width: clamp(auto, 30em, 30em);
-  }
-  html footer .contents div, body footer .contents div {
-    text-align: left;
-    width: 100%;
-  }
-  html footer .contents p.title, body footer .contents p.title {
-    text-align: left;
-  }
-  html footer .contents .menu a.button, body footer .contents .menu a.button {
-    justify-content: left;
-    width: clamp(auto, 30em, 30em);
-  }
-  html footer .contents .online-order a.button, body footer .contents .online-order a.button {
-    justify-content: left;
+  to {
+    transform: translate(100%, 80%);
+    visibility: hidden;
   }
 }/*# sourceMappingURL=style.css.map */

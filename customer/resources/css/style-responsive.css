@@ -1,0 +1,127 @@
+@media screen and (max-width: 1000px) {
+  :root {
+    /* Paddings */
+    --defPadding: 70px;
+  }
+  html .page-contents .about, body .page-contents .about {
+    flex-direction: column;
+    padding-left: var(--defPadding);
+  }
+  html .page-contents .about .left, body .page-contents .about .left {
+    display: none;
+  }
+  html .page-contents .about .right, body .page-contents .about .right {
+    text-align: center;
+  }
+  html .page-contents .about .right img, body .page-contents .about .right img {
+    display: flex;
+  }
+  html .page-contents .about .right .title, body .page-contents .about .right .title {
+    margin-bottom: 20px;
+  }
+  html .page-contents .best-menu .contents .contents-cards .card, body .page-contents .best-menu .contents .contents-cards .card {
+    flex: 0 1 40%;
+    margin-top: 3vw;
+  }
+}
+@media screen and (max-width: 850px) {
+  :root {
+    /* Paddings */
+    --defPadding: 40px;
+  }
+}
+@media screen and (max-width: 768px) {
+  html header a.logo, body header a.logo {
+    display: flex;
+  }
+  html header .container, body header .container {
+    animation: menuSlideOut 0.4s ease-in;
+    background: var(--white);
+    border-bottom-left-radius: 0.5em;
+    border-top-left-radius: 0.5em;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    gap: 1.4em;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 10px 0;
+    position: absolute;
+    right: 0;
+    transform: translateY(80%);
+    visibility: hidden;
+    width: 40%;
+    z-index: calc(var(--navbar) + 1);
+  }
+  html header .container.active-mobile, body header .container.active-mobile {
+    animation: menuSlideIn 0.4s ease-in;
+    visibility: visible;
+  }
+  html header .menu-icon, body header .menu-icon {
+    display: flex;
+  }
+  html header .menu-icon.active, body header .menu-icon.active {
+    transform: rotate(90deg);
+  }
+  html footer .contents, body footer .contents {
+    flex-direction: column;
+    justify-content: start;
+  }
+  html footer .contents a.button, body footer .contents a.button {
+    justify-content: left;
+    width: clamp(auto, 30em, 30em);
+  }
+  html footer .contents div, body footer .contents div {
+    text-align: left;
+    width: 100%;
+  }
+  html footer .contents p.title, body footer .contents p.title {
+    text-align: left;
+  }
+  html footer .contents .menu a.button, body footer .contents .menu a.button {
+    justify-content: left;
+    width: clamp(auto, 30em, 30em);
+  }
+  html footer .contents .online-order a.button, body footer .contents .online-order a.button {
+    justify-content: left;
+  }
+  html .page-contents .best-menu .title, body .page-contents .best-menu .title {
+    margin-bottom: 5vw;
+  }
+  html .page-contents .best-menu .contents .contents-cards, body .page-contents .best-menu .contents .contents-cards {
+    width: 70%;
+  }
+  html .page-contents .best-menu .contents .contents-cards .card, body .page-contents .best-menu .contents .contents-cards .card {
+    flex: 0 1 100%;
+    margin-top: 10vw;
+  }
+  html .page-contents .best-menu .contents .contents-cards .card .image-container img, body .page-contents .best-menu .contents .contents-cards .card .image-container img {
+    margin-bottom: 2vw;
+    width: 30vw;
+  }
+  html .page-contents .best-menu .contents .contents-cards .card .text, body .page-contents .best-menu .contents .contents-cards .card .text {
+    font-size: var(--fontSize006);
+  }
+}
+@media screen and (max-width: 425px) {
+  :root {
+    /* Paddings */
+    --defPadding: 25px;
+  }
+  html .page-contents .best-menu .title .text, body .page-contents .best-menu .title .text {
+    font-size: var(--fontSize004);
+  }
+  html .page-contents .best-menu .title .line, body .page-contents .best-menu .title .line {
+    height: 0.3em;
+  }
+  html .page-contents .best-menu .contents .contents-cards, body .page-contents .best-menu .contents .contents-cards {
+    width: 90vw;
+  }
+  html .page-contents .best-menu .contents .contents-cards .card, body .page-contents .best-menu .contents .contents-cards .card {
+    flex: 0 1 90%;
+    margin-top: 15vw;
+  }
+  html .page-contents .best-menu .contents .contents-cards .card .image-container img, body .page-contents .best-menu .contents .contents-cards .card .image-container img {
+    margin-bottom: 0.2vw;
+    width: 35vw;
+  }
+}/*# sourceMappingURL=style-responsive.css.map */
