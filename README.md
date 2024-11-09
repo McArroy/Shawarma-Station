@@ -10,13 +10,17 @@
 ### Changelogs
 These changelogs are basically just a summary list of changes that are very important for developers information.
 
-#### UPDATE Version 1.3.0.2 [ Last update: 11/07/2024 ]
+#### UPDATE Version 1.3.0.5 [ Last update: 11/09/2024 ]
 <details>
 <summary>Click to expand</summary>
 
 **[ CUSTOMER ]**
+- Added Shawarma Station's logo
+- Added "style-responsive.css" for a standalone responsive-design to make easier to edit
 - Fixed overflow images by cutting them
 - Fixed some typos
+- Fixed non-registered symbols and shown square-symbol when website opened in mobile devices
+- Fixed website not updated the styles and the resources-file didn't get from the root folder
 - Enabled responsive-design
 
 </details>
