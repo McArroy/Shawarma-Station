@@ -17,6 +17,9 @@ These changelogs are basically just a summary list of changes that are very impo
 <details>
 <summary>Click to expand</summary>
 
+**[ HOSTING ]**
+- Enabled hosting's domain [shawarma-station-admin.rf.gd](https://shawarma-station-admin.rf.gd) and now is fully accessible
+
 **[ CUSTOMER ]**
 - Added Shawarma Station's logo
 - Added "style-responsive.css" for a standalone responsive-design to make easier to edit
