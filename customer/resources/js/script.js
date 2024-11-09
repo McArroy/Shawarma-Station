@@ -68,7 +68,7 @@ $(document).ready(function()
 	{
 		const foodsButton = $("body .page-contents .page-menu .selections a.button.button-foods");
 		const drinksButton = $("body .page-contents .page-menu .selections a.button.button-drinks");
-		const subSelections = $("body .page-contents .page-menu .sub-selections");
+		const subSelections = $("body .page-contents .page-menu .container .sub-selections");
 		const isHidden = subSelections.hasClass("hidden");
 
 		if (type === QUERY_TYPE.FOODS)
@@ -111,8 +111,9 @@ $(document).ready(function()
 			updateButtonState(foodsButton, false);
 			toggleVisibility(subSelections, false);
 			updateButtonState(drinksButton, true);
-			toggleVisibility("body .page-menu .selections p span#1", false);
-			toggleVisibility("body .page-menu .selections p span#2", true);
+
+			if (!isHidden)
+				$("body .page-menu .selections a svg").removeClass("active");
 
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods"), false);
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-drinks"), true);
@@ -120,8 +121,11 @@ $(document).ready(function()
 		else if (type === QUERY_TYPE.FOODS_SUBTYPES)
 		{
 			toggleVisibility(subSelections, isHidden);
-			toggleVisibility("body .page-menu .selections p span#1", isHidden);
-			toggleVisibility("body .page-menu .selections p span#2", !isHidden);
+
+			if (!isHidden)
+				$("body .page-menu .selections a svg").removeClass("active");
+			else
+				$("body .page-menu .selections a svg").addClass("active");
 
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-foods"), true);
 			toggleVisibility($("body .page-contents .page-menu .contents-card .class-drinks"), false);
@@ -129,8 +133,8 @@ $(document).ready(function()
 
 		for (let i = 1; i <= 4; i++)
 		{
-			const button = $(`body .page-menu .sub-selections a.button.button-foods#foods-subtype-button-${i}`);
-			const buttonSelected = $(`body .page-menu .sub-selections a.button.button-foods#foods-subtype-button-${subtype}`);
+			const button = $(`body .page-menu .container .sub-selections a.button.button-foods#foods-subtype-button-${i}`);
+			const buttonSelected = $(`body .page-menu .container .sub-selections a.button.button-foods#foods-subtype-button-${subtype}`);
 
 			updateButtonState(button, false);
 			updateButtonState(buttonSelected, true);
