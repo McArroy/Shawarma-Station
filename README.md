@@ -24,6 +24,7 @@ These changelogs are basically just a summary list of changes that are very impo
 - Added Shawarma Station's logo
 - Added "style-responsive.css" for a standalone responsive-design to make easier to edit
 - Fixed overflow images by cutting them
+- Fixed some known bugs
 - Fixed some typos
 - Fixed non-registered symbols and shown square-symbol when website opened in mobile devices
 - Fixed website not updated the styles and the resources-file didn't get from the root folder
