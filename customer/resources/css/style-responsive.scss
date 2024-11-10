@@ -184,6 +184,33 @@
 					}
 				}
 			}
+
+			.page-menu
+			{
+				.contents-card
+				{
+					.card
+					{
+						flex: 0 1 47%;
+						padding: 0em;
+
+						.image-container
+						{
+							height: 60%;
+
+							img
+							{
+								width: 20vw;
+							}
+						}
+
+						.text
+						{
+							padding: 1.2em;
+						}
+					}
+				}
+			}
 		}
 	}
 }

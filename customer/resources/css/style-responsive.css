@@ -101,6 +101,19 @@
   html .page-contents .best-menu .contents .contents-cards .card .text, body .page-contents .best-menu .contents .contents-cards .card .text {
     font-size: var(--fontSize006);
   }
+  html .page-contents .page-menu .contents-card .card, body .page-contents .page-menu .contents-card .card {
+    flex: 0 1 47%;
+    padding: 0em;
+  }
+  html .page-contents .page-menu .contents-card .card .image-container, body .page-contents .page-menu .contents-card .card .image-container {
+    height: 60%;
+  }
+  html .page-contents .page-menu .contents-card .card .image-container img, body .page-contents .page-menu .contents-card .card .image-container img {
+    width: 20vw;
+  }
+  html .page-contents .page-menu .contents-card .card .text, body .page-contents .page-menu .contents-card .card .text {
+    padding: 1.2em;
+  }
 }
 @media screen and (max-width: 425px) {
   :root {

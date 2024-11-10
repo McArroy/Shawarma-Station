@@ -237,11 +237,11 @@ html .card .text, body .card .text {
   flex-direction: column;
   font-size: var(--fontSize008);
   font-weight: bold;
-  padding: 30px;
+  padding: 1em;
   width: 100%;
 }
-html .card .text .description, html .card .text .price .variants span .var1, html .card .text .price .variants span .var2, body .card .text .description, body .card .text .price .variants span .var1, body .card .text .price .variants span .var2 {
-  font-size: 0.5em;
+html .card .text .description, body .card .text .description {
+  font-size: 0.6em;
   font-weight: 100;
 }
 html .card .text .line, body .card .text .line {
@@ -255,12 +255,6 @@ html .card .text .price, body .card .text .price {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 100%;
-}
-html .card .text .price .variants, body .card .text .price .variants {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   width: 100%;
 }
 html .page-contents, body .page-contents {
@@ -474,18 +468,18 @@ html .page-contents .page-menu .container .sub-selections a, body .page-contents
 }
 html .page-contents .page-menu .contents-card, body .page-contents .page-menu .contents-card {
   display: flex;
-  margin-top: 200px;
+  margin-top: 12vw;
   width: 100%;
 }
 html .page-contents .page-menu .contents-card .card, body .page-contents .page-menu .contents-card .card {
-  margin-bottom: 200px;
+  margin-bottom: 4em;
 }
 html .page-contents .page-menu .contents-card .class-foods, html .page-contents .page-menu .contents-card .class-drinks, body .page-contents .page-menu .contents-card .class-foods, body .page-contents .page-menu .contents-card .class-drinks {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   height: 100%;
-  justify-content: space-around;
+  justify-content: space-between;
   margin: 0;
   width: 100%;
 }
