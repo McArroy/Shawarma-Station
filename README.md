@@ -13,7 +13,7 @@ Shawarma Station is a website designed by IPB Vocational School Students from th
 ### Changelogs
 These changelogs are basically just a summary list of changes that are very important for developers information.
 
-#### UPDATE Version 1.3.0.7 [ Last update: 11/09/2024 ]
+#### UPDATE Version 1.3.0.8 [ Last update: 11/10/2024 ]
 <details>
 <summary>Click to expand</summary>
 
@@ -23,6 +23,7 @@ These changelogs are basically just a summary list of changes that are very impo
 **[ CUSTOMER ]**
 - Added Shawarma Station's logo
 - Added "style-responsive.css" for a standalone responsive-design to make easier to edit
+- Added website icon
 - Fixed overflow images by cutting them
 - Fixed some known bugs
 - Fixed some typos
