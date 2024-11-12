@@ -4,7 +4,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get("/", function()
 {
-	return redirect()->route("adminpanel");
+	return redirect()->route("order");
+});
+
+Route::get("/register", function()
+{
+	return redirect()->route("order");
 });
 
 Route::middleware(
@@ -16,16 +21,26 @@ Route::middleware(
 {
 	Route::get("/", function()
 	{
-		return redirect()->route("adminpanel");
+		return redirect()->route("order");
 	})->name("home");
 
 	Route::get("/dashboard", function()
 	{
-		return redirect()->route("adminpanel");
+		return redirect()->route("order");
 	})->name("dashboard");
 
-	Route::get("/adminpanel", function()
+	Route::get("/order", function()
 	{
 		return view("admin.panel");
-	})->name("adminpanel");
+	})->name("order");
+
+	Route::get("/history", function()
+	{
+		return view("admin.panel");
+	})->name("history");
+
+	Route::get("/edit", function()
+	{
+		return view("admin.panel");
+	})->name("edit");
 });
