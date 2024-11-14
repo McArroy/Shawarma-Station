@@ -1,48 +1,40 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{ config("app.name") }}</title>
+		<link rel="icon" type="image/x-icon" href="{{ asset('imgs/shawarma_station_logo_transparent.png') }}">
 
-        <x-validation-errors class="mb-4" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat&display=swap">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
 
-        @session('status')
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ $value }}
-            </div>
-        @endsession
+		<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+		<script>
+			$(document).ready(function()
+			{
+				var randomNum = Math.floor(Math.random() * 100000);
+				var cssUrl = "{{ asset('css/style.css') }}?hash=" + randomNum;
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+				$("html head").append("<link rel='stylesheet' href='" + cssUrl + "'/>");
+			});
+		</script>
+	</head>
 
-            <div>
-                <x-label for="name" value="{{ __('Username') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="username" />
-            </div>
+	<body class="admin-login">
+		<div class="contents">
+			<x-validation-errors class="mb-4" />
 
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
+			<div class="card">
+				<h1>{{ __('ADMIN LOGIN') }}</h1>
+				<form method="POST" action="{{ route('login') }}">
+					@csrf
 
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+					<input type="text" placeholder="{{ __('Username') }}" title="{{ __('Masukkan username Anda') }}" id="name" name="name" :value="old('name')" required autofocus autocomplete="username">
+					<input type="password" placeholder="{{ __('Password') }}" title="{{ __('Masukkan password Anda') }}" id="password" name="password" required autocomplete="current-password">
+					<button type="submit" title="{{ __('Login') }}">{{ __("Login") }}</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
