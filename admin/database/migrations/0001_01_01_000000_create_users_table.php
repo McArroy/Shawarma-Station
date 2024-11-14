@@ -13,9 +13,9 @@ return new class extends Migration
 	{
 		Schema::create("users", function(Blueprint $table)
 		{
-			$table->id();
-			$table->string("name")->unique();
-			$table->string("password");
+			$table->id("id", 2);
+			$table->string("name", 32)->unique();
+			$table->string("password", 64);
 
 			/* Shawarma Station is not using these... yet */
 			// $table->string("email")->unique();
