@@ -663,6 +663,7 @@ html, body
 	
 			.actions
 			{
+				align-items: center;
 				display: flex;
 				gap: .5em;
 				flex-direction: row;
@@ -689,6 +690,14 @@ html, body
 						border: .2em solid var(--red);
 						font-size: var(--fontSize002);
 					}
+				}
+
+				p.quantity
+				{
+					border: .1em solid var(--red);
+					border-radius: .2em;
+					font-size: var(--fontSize001);
+					padding: .4em .5em;
 				}
 			}
 		}
