@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,10 +13,12 @@
 		<script>
 			$(document).ready(function()
 			{
-				var randomNum = Math.floor(Math.random() * 100000);
-				var cssUrl = "{{ asset('css/style.css') }}?hash=" + randomNum;
+				var hashVersion = 18248299128239200;
+				var cssUrl = "{{ asset('css/style.css') }}?hash=" + hashVersion;
+				var cssAuthUrl = "{{ asset('css/style-auth.css') }}?hash=" + hashVersion;
 
 				$("html head").append("<link rel='stylesheet' href='" + cssUrl + "'/>");
+				$("html head").append("<link rel='stylesheet' href='" + cssAuthUrl + "'/>");
 			});
 		</script>
 	</head>
