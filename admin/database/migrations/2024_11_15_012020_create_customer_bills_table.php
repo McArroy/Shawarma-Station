@@ -13,7 +13,7 @@ return new class extends Migration
 	{
 		Schema::create("customer_bills", function(Blueprint $table)
 		{
-			$table->id("bill_id");
+			$table->id("bill_id", 11);
 			$table->string("customer_id");
 			$table->string("employee_id");
 			$table->string("order_id");

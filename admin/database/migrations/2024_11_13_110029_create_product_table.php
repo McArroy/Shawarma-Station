@@ -17,9 +17,9 @@ return new class extends Migration
 			$table->string("product_name", 64);
 			$table->string("product_img", 2048);
 			$table->string("product_description", 64)->nullable();
-			$table->string("product_type", 1);
-			$table->string("product_subtype", 1)->nullable();
-			$table->string("product_price", 7);
+			$table->integer("product_type");
+			$table->integer("product_subtype")->nullable();
+			$table->integer("product_price");
 		});
 	}
 
