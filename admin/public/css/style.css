@@ -221,6 +221,11 @@ html, body
 		{
 			transform: scale(.97);
 		}
+
+		&::placeholder
+		{
+			font-size: .7em;
+		}
 	}
 
 	select
@@ -496,7 +501,7 @@ html, body
 					padding: 1em var(--defPadding);
 					position: absolute;
 					right: 0;
-					transform: translateY(40em);
+					transform: translateY(100dvh);
 					width: 80dvw;
 
 					&.active
