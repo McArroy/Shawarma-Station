@@ -239,54 +239,6 @@ html, body
 		}
 	}
 
-	&.admin-login
-	{
-		background: url("/imgs/background.jpg");
-		background-repeat: repeat;
-		background-size: cover;
-		display: flex;
-		height: 100dvh;
-		padding: 0 var(--defPadding) 0 var(--defPadding);
-		text-align: center;
-		width: 100dvw;
-
-		.contents
-		{
-			align-items: center;
-			display: flex;
-			flex-direction: column;
-			height: 100%;
-			justify-content: center;
-			width: 100%;
-
-			.card
-			{
-				background: var(--red);
-				border-radius: 1.4em;
-				color: var(--white);
-				display: flex;
-				flex-direction: column;
-				padding: 7em;
-				width: clamp(500px, 40dvw, 40dvw);
-
-				button
-				{
-					margin-top: 1.5em;
-				}
-
-				h1
-				{
-					font-size: var(--fontSize007);
-				}
-
-				input
-				{
-					margin-top: 1em;
-				}
-			}
-		}
-	}
-
 	&.admin-panel
 	{
 		display: flex;
