@@ -13,6 +13,28 @@ Shawarma Station is a website designed by IPB Vocational School Students from th
 ### Changelogs
 These changelogs are basically just a summary list of changes that are very important for developers information.
 
+#### UPDATE Version 3.1.4.0 [ Last update: 11/21/2024 ]
+<details>
+<summary>Click to expand</summary>
+
+**[ ADMIN ]**
+- Added "style-auth.css" for a standalone admin-login-design to make easier to edit
+- Added a display-text instead a blank page when there is no data to be shown
+- Added client-sided inputs check
+- Added confirmation before deletion
+- Fixed database data-type and maximum value
+- Fixed image-menu didn't remove if the menu removed from the database
+- Fixed indentation in some layouts
+- Fixed non-working Menu-Order History by replacing dynamic-products into static-products and non-removeable history
+- Fixed overflow element
+- Fixed server-side data validation
+- Fixed some known bugs
+- Removed unused CSS-style
+- Removed unused 
+- Enabled WhatsApp-integrated message to send customer's receipt
+
+</details>
+
 #### UPDATE Version 2.1.2.0 [ Last update: 11/15/2024 ]
 <details>
 <summary>Click to expand</summary>
