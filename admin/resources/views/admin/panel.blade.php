@@ -13,7 +13,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
 		<script>
 			$(document).ready(function()
 			{
-				var hashVersion = 3458739349211312;
+				var hashVersion = 18248299128239200;
 				var cssUrl = "{{ asset('css/style.css') }}?hash=" + hashVersion;
 
 				$("html head").append("<link rel='stylesheet' href='" + cssUrl + "'/>");
@@ -94,44 +94,49 @@
 						<a href="javascript:void(0);" class="button button-selected" title="{{ __('Semua') }}" onclick="displayMenu(6);">{{ __("Semua") }}</a>
 					</div>
 					<div class="slider">
-						@foreach ($products as $product)
-						<div
-						@if ($product->product_type == 1)
-							@if ($product->product_subtype == 1)
-								class="card foods-subtypes-package"
-							@elseif ($product->product_subtype == 2)
-								class="card foods-subtypes-sandwich"
-							@elseif ($product->product_subtype == 3)
-								class="card foods-subtypes-sideorders"
-							@elseif ($product->product_subtype == 4)
-								class="card foods-subtypes-burgers"
+						@if ($products->isNotEmpty())
+							@foreach ($products as $product)
+							<div
+							@if ($product->product_type == 1)
+								@if ($product->product_subtype == 1)
+									class="card foods-subtypes-package"
+								@elseif ($product->product_subtype == 2)
+									class="card foods-subtypes-sandwich"
+								@elseif ($product->product_subtype == 3)
+									class="card foods-subtypes-sideorders"
+								@elseif ($product->product_subtype == 4)
+									class="card foods-subtypes-burgers"
+								@endif
+							@else
+								class="card drinks"
 							@endif
+							title="{{ $product->product_name }}{{ "\n" }}{{ __('Tekan untuk menambahkan') }}"
+							>
+								<img src="{{ route('menu.get.images', '') }}/{{ $product->product_img }}" alt="{{ $product->product_name }}">
+								<div class="text">
+									<p>{{ $product->product_name }}</p>
+									<p>Rp{{ number_format($product->product_price, 0, ",", ".") }}</p>
+								</div>
+								<div class="actions">
+									<form method="POST" action="{{ route('order.reduce') }}">
+										@csrf
+
+										<input type="hidden" name="product_name" value="{{ $product->product_name }}">
+										<button class="reduce" title="{{ __('Kurang') }}">{{ __("-") }}</button>
+									</form>
+									<form method="POST" action="{{ route('order.add') }}">
+										@csrf
+
+										<input type="hidden" name="product_name" value="{{ $product->product_name }}">
+										<input type="hidden" name="product_price" value="{{ $product->product_price }}">
+										<button class="add" title="{{ __('Tambah') }}">{{ __("+") }}</button>
+									</form>
+								</div>
+							</div>
+							@endforeach
 						@else
-							class="card drinks"
+							<p>{{ __("Menu kosong. Silakan pergi ke \"Edit Menu\" untuk menambahkan menu baru.") }}</p>
 						@endif
-						title="{{ $product->product_name }}"
-						>
-							<img src="{{ route('menu.get.images', '') }}/{{ $product->product_img }}" alt="{{ $product->product_name }}">
-							<div class="text">
-								<p>{{ $product->product_name }}</p>
-								<p>Rp{{ number_format($product->product_price, 0, ",", ".") }}</p>
-							</div>
-							<div class="actions">
-								<form method="POST" action="{{ route('order.reduce') }}">
-									@csrf
-
-									<input type="hidden" name="product_id" value="{{ $product->product_id }}">
-									<button class="reduce" title="{{ __('Kurang') }}">{{ __("-") }}</button>
-								</form>
-								<form method="POST" action="{{ route('order.add') }}">
-									@csrf
-
-									<input type="hidden" name="product_id" value="{{ $product->product_id }}">
-									<button class="add" title="{{ __('Tambah') }}">{{ __("+") }}</button>
-								</form>
-							</div>
-						</div>
-						@endforeach
 					</div>
 
 					<?php
@@ -143,7 +148,7 @@
 					{
 					?>
 						<div class="order-actions">
-							<button class="button" title="{{ __('Batalkan pesanan') }}" onclick="window.location.href = '{{ route('order.delete') }}';">{{ __("Batal") }}</button>
+							<button class="button" title="{{ __('Batalkan pesanan') }}" onclick="if (confirm('Apakah Anda yakin ingin menghapus pesanan ini?')) { window.location.href = '{{ route('order.delete') }}'; }">{{ __("Batal") }}</button>
 							<button class="button" title="{{ __('Detail pesanan') }}" onclick="toggleOrderPanel();">{{ __("Detail") }}</button>
 						</div>
 
@@ -168,19 +173,19 @@
 									</p>
 									<p>
 										<label for="whatsapp_number" title="{{ __('Nomor WhatsApp pembeli') }}">{{ __("No. WhatsApp\t:\t") }}</label>
-										<input type="number" id="whatsapp_number" name="whatsapp_number" title="{{ __('Nomor WhatsApp pembeli') }}" placeholder="{{ __(628123456) }}" required>
+										<input type="number" id="whatsapp_number" name="whatsapp_number" title="{{ __('Nomor WhatsApp pembeli') }}" placeholder="{{ __('Contoh: 628123456') }}" required>
 									</p>
 									<p>{{ __("No. Order\t:\t") }}<span>{{ $order_id }}</span></p>
 									<div class="equal-sign-bar"></div>
 								</div>
-							@foreach ($orderData as $product_id => $order)
+							@foreach ($orderData as $product_name => $order)
 								<div class="menus">
-									<span>{{ $adminController->MenuGetInfo($order["product_id"], "product_name") }}</span>
+									<span>{{ $product_name }}</span>
 									<div class="price-details">
-										<p>{{ number_format($adminController->MenuGetInfo($order["product_id"], "product_price"), 0, ",", ".") }}</p>
-										<p>{{ $order["quantity"] }}</p>
-										<p class="price-subtotal hidden">{{ (int) $adminController->MenuGetInfo($order["product_id"], "product_price") * (int) $order["quantity"] }}</p>
-										<p>{{ number_format((int) $adminController->MenuGetInfo($order["product_id"], "product_price") * (int) $order["quantity"], 0, ",", ".") }}</p>
+										<p>{{ number_format($order["product_price"], 0, ",", ".") }}</p>
+										<p class="quantity">{{ $order["quantity"] }}</p>
+										<p class="price-subtotal hidden">{{ (int) $order["product_price"] * (int) $order["quantity"] }}</p>
+										<p>{{ number_format((int) $order["product_price"] * (int) $order["quantity"], 0, ",", ".") }}</p>
 									</div> 
 								</div>
 							@endforeach
@@ -188,7 +193,13 @@
 								<div class="menus-price-total">
 									<span>{{ __("TOTAL\t:\t") }}</span>
 									<script type="text/javascript">
+										var quantityTotal = 0;
 										var priceTotal = 0;
+
+										$(".menus .price-details p.quantity").each(function()
+										{
+											quantityTotal += parseInt($(this).html(), 10);
+										});
 
 										$(".menus .price-details p.price-subtotal").each(function()
 										{
@@ -205,12 +216,13 @@
 
 										formattedPrice = formattedPrice.replace(/Rp[\u200B\u00A0 ]/, "Rp")
 										
-										$(".menus-price-total").append("<span>" + formattedPrice + "</span>");
+										$(".menus-price-total").append("<span class='quantity-total'>" + quantityTotal + " QTY </span>");
+										$(".menus-price-total").append("<span class='price-total'>" + formattedPrice + "</span>");
 									</script>
 								</div>
 							</div>
 
-							<button class="button button-order" title="{{ __('Pesan dan kirim struk') }}" onclick="orderSave();">{{ __("Pesan") }}</button>
+							<button class="button button-order" title="{{ __('Pesan dan kirim struk melalui WhatsApp') }}" onclick="orderSave();">{{ __("Pesan") }}</button>
 						</div>
 					<?php
 					}
@@ -232,26 +244,70 @@
 							var billTime = $("p span.bill-time").html();
 							var url = "{{ route('order.save', ['customer_name' => '__customer_name__', 'whatsapp_number' => '__whatsapp_number__', 'bill_time' => '__bill_time__']) }}";
 
-							if (customerName === "" || whatsappNumber === "" || whatsappNumber < 4)
+							if (customerName === "")
 							{
-								if (customerName === "")
-									alert("Nama pembeli tidak boleh kosong!");
-								else if (whatsappNumber === "")
-									alert("Nomor WhatsApp pembeli tidak boleh kosong!");
-								else if (whatsappNumber < 4)
-									alert("Pastikan kembali nomor WhatsApp pembeli benar!");
-								
+								alert("Nama pembeli tidak boleh kosong!");
+
+								return;
+							}
+							
+							if (customerName.length < 2)
+							{
+								alert("Pastikan kembali nama pembeli benar!");
+
 								return;
 							}
 
-							if (whatsappNumber.startsWith("0"))
+							if (whatsappNumber === "")
 							{
-								if (!whatsappNumber.startsWith("62"))
-									$("input[name='whatsapp_number'").val("62" + whatsappNumber.slice(1));
+								alert("Nomor WhatsApp pembeli tidak boleh kosong!");
+
+								return;
 							}
 
-							url = url.replace("__customer_name__", customerName).replace("__whatsapp_number__", whatsappNumber).replace("__bill_time__", billTime);
+							if (whatsappNumber.length < 4)
+							{
+								alert("Pastikan kembali nomor WhatsApp pembeli benar!");
 
+								return;
+							}
+
+							// Redirect to WhatsApp using WhatsApp API in a new tab
+							var whatsappUrl = "https://api.whatsapp.com/send?phone="
+											+ whatsappNumber
+											+ "&text="
+											+ "%0A-------------------------%0A"
+											+ "Shawarma%20Station"
+											+ "%0A-------------------------%0A"
+											+ "Tanggal%3A%20%20%20"
+											+ encodeURIComponent(billTime)
+											+ "%0ANama%3A%20%20%20%20"
+											+ encodeURIComponent(customerName)
+											+ "%0ANo.%20WA%3A%20%20%20%20"
+											+ encodeURIComponent(whatsappNumber)
+											+ "%0A-------------------------%";
+							
+							@foreach ($orderData as $product_name => $order)
+								whatsappUrl += "%0A*"
+											+ encodeURIComponent("{{ $product_name }}")
+											+ "*%0A"
+											+ "{{ number_format($order['product_price'], 0, ',', '.') }}"
+											+ "%20x%20"
+											+ "{{ $order['quantity'] }}"
+											+ "%20%20%20%20"
+											+ "{{ number_format((int) $order['product_price'] * (int) $order['quantity'], 0, ',', '.') }}";
+							@endforeach
+
+							whatsappUrl += "%0A-------------------------%0A"
+										+ "*TOTAL*%3A%20%20%20%20*"
+										+ encodeURIComponent($("span.quantity-total").html())
+										+ "*%20%20%20%20*"
+										+ encodeURIComponent($("span.price-total").html()) + "*";
+
+							window.open(whatsappUrl, "_blank");
+
+							// Save the order
+							url = url.replace("__customer_name__", customerName).replace("__whatsapp_number__", whatsappNumber).replace("__bill_time__", billTime);
 							window.location.href = url;
 						}
 
@@ -280,37 +336,35 @@
 				{
 				?>
 					<div class="slider">
-						<?php
-						foreach ($customerBills as $customerBill)
-						{
-							$customer = Customer::where("customer_id", $customerBill->customer_id)->first();
-							$orders = CustomerOrder::where("order_id", $customerBill->order_id)->get();
+						@if ($customerBills->isNotEmpty())
+							@foreach ($customerBills as $customerBill)
+								<?php
 
-							?>
-							<div class="card" title="{{ __('Nomor pesanan: ') }}{{ $customerBill->order_id }}" onclick="toggleOrderPanel('{{ $customerBill->order_id }}', '{{ $customerBill->bill_time }}', '{{ $customer->customer_name }}', '{{ $customer->whatsapp_number }}', '{{ $orders }}');">
-								<img src="{{ asset('imgs/icons/menu_order_history.png') }}" alt="{{ __('icon_menu_order_history') }}">
-								<div class="text">
-									<p>{{ $customerBill->order_id }}</p>
-									<p>{{ $customerBill->bill_time }}</p>
+								$customer = Customer::where("customer_id", $customerBill->customer_id)->first();
+								$orders = CustomerOrder::where("order_id", $customerBill->order_id)->get();
+
+								?>
+								<div class="card" title="{{ __('Nomor pesanan: ') }}{{ $customerBill->order_id }}" onclick="toggleOrderPanel('{{ $customerBill->order_id }}', '{{ $customerBill->bill_time }}', '{{ $customer->customer_name }}', '{{ $customer->whatsapp_number }}', '{{ $orders }}');">
+									<img src="{{ asset('imgs/icons/menu_order_history.png') }}" alt="{{ __('icon_menu_order_history') }}">
+									<div class="text">
+										<p>{{ $customerBill->order_id }}</p>
+										<p>{{ $customerBill->bill_time }}</p>
+									</div>
+									<div class="actions">
+										<svg width="60" viewBox="0 0 6.3499999 6.3500002" xmlns="http://www.w3.org/2000/svg">
+											<g transform="translate(0 -290.65)">
+												<path d="m2.2580394 291.96502a.26460982.26460982 0 0 0 -.1741496.46871l1.6190225 1.38699-1.6190225 1.38648a.26460982.26460982 0 1 0 .3436483.40049l1.8536335-1.58595a.26460982.26460982 0 0 0 0-.40256l-1.8536335-1.5875a.26460982.26460982 0 0 0 -.1694987-.0667z"></path>
+											</g>
+										</svg>
+									</div>
 								</div>
-								<div class="actions">
-									<svg width="60" viewBox="0 0 6.3499999 6.3500002" xmlns="http://www.w3.org/2000/svg">
-										<g transform="translate(0 -290.65)">
-											<path d="m2.2580394 291.96502a.26460982.26460982 0 0 0 -.1741496.46871l1.6190225 1.38699-1.6190225 1.38648a.26460982.26460982 0 1 0 .3436483.40049l1.8536335-1.58595a.26460982.26460982 0 0 0 0-.40256l-1.8536335-1.5875a.26460982.26460982 0 0 0 -.1694987-.0667z"></path>
-										</g>
-									</svg>
-								</div>
-							</div>
-						<?php
-						}
-						?>
+							@endforeach
+						@else
+							<p>{{ __("Riwayat pesanan kosong. Belum terdapat daftar riwayat pembelanjaan pelanggan.") }}</p>
+						@endif
 					</div>
 
-					<?php
-
-					if (count($customerBills) > 0)
-					{
-					?>
+					@if ($customerBills->isNotEmpty())
 						<div class="order-panel order-history">
 							<div class="sub-selections edit-menu">
 								<a href="javascript:void(0);" class="button button-selected2" title="{{ __('Kembali ke menu') }}" onclick="toggleOrderPanel();">
@@ -392,10 +446,7 @@
 								$("body.admin-panel .right .contents .order-panel").toggleClass("active");
 							}
 						</script>
-					<?php
-					}
-
-					?>
+					@endif
 				<?php
 				}
 				else if ($isMenuEditPage)
@@ -406,33 +457,37 @@
 							<a href="javascript:void(0);" class="button button-selected2" title="{{ __('Tambah menu baru') }}" onclick="popUpMenu(0);">{{ __("Tambah Baru") }}</a>
 						</div>
 						<div class="slider">
-							@foreach ($products as $product)
-							<div
-							@if ($product->product_type == 1)
-								@if ($product->product_subtype == 1)
-									class="card foods-subtypes-package"
-								@elseif ($product->product_subtype == 2)
-									class="card foods-subtypes-sandwich"
-								@elseif ($product->product_subtype == 3)
-									class="card foods-subtypes-sideorders"
-								@elseif ($product->product_subtype == 4)
-									class="card foods-subtypes-burgers"
+							@if ($products->isNotEmpty())
+								@foreach ($products as $product)
+								<div
+								@if ($product->product_type == 1)
+									@if ($product->product_subtype == 1)
+										class="card foods-subtypes-package"
+									@elseif ($product->product_subtype == 2)
+										class="card foods-subtypes-sandwich"
+									@elseif ($product->product_subtype == 3)
+										class="card foods-subtypes-sideorders"
+									@elseif ($product->product_subtype == 4)
+										class="card foods-subtypes-burgers"
+									@endif
+								@else
+									class="card drinks"
 								@endif
+								title="{{ $product->product_name }}{{ "\n" }}{{ __('Tekan untuk mengubah (edit) menu') }}"
+								>
+									<img src="{{ route('menu.get.images', '') }}/{{ $product->product_img }}" alt="{{ $product->product_name }}">
+									<div class="text">
+										<p>{{ $product->product_name }}</p>
+										<p>Rp{{ number_format($product->product_price, 0, ",", ".") }}</p>
+									</div>
+									<div class="actions">
+										<button class="edit" title="{{ __('Edit menu') }}" onclick="popUpMenu(1, {{ $product->product_id }}, '{{ $product->product_name }}', '{{ $product->product_description }}', {{ $product->product_type }}, {{ ($product->product_subtype === null || $product->product_subtype === '') ? '0' : $product->product_subtype }}, {{ $product->product_price }});">{{ __("Edit") }}</button>
+									</div>
+								</div>
+								@endforeach
 							@else
-								class="card drinks"
+								<p>{{ __("Menu kosong. Silakan klik tombol \"Tambah Baru\" untuk menambahkan menu.") }}</p>
 							@endif
-							title="{{ $product->product_name }}"
-							>
-								<img src="{{ route('menu.get.images', '') }}/{{ $product->product_img }}" alt="{{ $product->product_name }}">
-								<div class="text">
-									<p>{{ $product->product_name }}</p>
-									<p>Rp{{ number_format($product->product_price, 0, ",", ".") }}</p>
-								</div>
-								<div class="actions">
-									<button class="edit" title="{{ __('Edit menu') }}" onclick="popUpMenu(1, {{ $product->product_id }}, '{{ $product->product_name }}', '{{ $product->product_description }}', {{ $product->product_type }}, {{ ($product->product_subtype === null || $product->product_subtype === '') ? '0' : $product->product_subtype }}, {{ $product->product_price }});">{{ __("Edit") }}</button>
-								</div>
-							</div>
-							@endforeach
 						</div>
 					</div>
 
@@ -676,6 +731,99 @@
 				});
 
 				updateButtonState(button, true);
+			});
+
+			$("input[name='product_name']").on("input paste", function()
+			{
+				const maxVal = 64;
+				var inputText = $(this).val();
+
+				if (inputText.length > maxVal)
+				{
+					alert("Peringatan!\nNama produk tidak boleh melebihi dari " + maxVal + " karakter!");
+
+					$(this).val(inputText.substring(0, maxVal));
+				}
+			});
+
+			$("input[name='product_description']").on("input paste", function()
+			{
+				const maxVal = 64;
+				var inputText = $(this).val();
+
+				if (inputText.length > maxVal)
+				{
+					alert("Peringatan!\nDeskripsi produk tidak boleh melebihi dari " + maxVal + " karakter!");
+
+					$(this).val(inputText.substring(0, maxVal));
+				}
+			});
+
+			$("input[type='number'][name='product_price']").on("input paste", function()
+			{
+				const maxVal = 7;
+				var inputNum = $(this).val();
+				
+				// Allow only digits (0-9) and prevent any other characters
+				var sanitizedValue = inputNum.replace(/[^0-9]/g, "");
+
+				// If the value starts with 0, remove it
+				if (sanitizedValue.charAt(0) === "0")
+				{
+					$(this).val("");
+					alert("Peringatan!\nHarga produk tidak boleh diawali dengan 0!");
+
+					return;
+				}
+
+				if (sanitizedValue.length > maxVal)
+				{
+					alert("Peringatan!\nHarga produk tidak boleh melebihi dari " + maxVal + " digit!");
+
+					sanitizedValue = sanitizedValue.substring(0, maxVal);
+				}
+
+				$(this).val(sanitizedValue);
+			});
+
+			$("input[name='customer_name']").on("input paste", function()
+			{
+				const maxVal = 32;
+				var inputText = $(this).val();
+
+				// Allow only alphabetic characters (A-Z, a-z)
+				var sanitizedText = inputText.replace(/[^a-zA-Z\s]/g, "");
+
+				if (sanitizedText.length > maxVal)
+				{
+					alert("Peringatan!\nNama pembeli tidak boleh melebihi dari " + maxVal + " karakter!");
+
+					sanitizedText = sanitizedText.substring(0, maxVal);
+				}
+
+				$(this).val(sanitizedText);
+			});
+
+			$("input[type='number'][name='whatsapp_number']").on("input paste", function()
+			{
+				const maxVal = 32;
+				var inputNum = $(this).val();
+				
+				// Allow only digits (0-9) and prevent any other characters
+				var sanitizedValue = inputNum.replace(/[^0-9]/g, "");
+
+				if (sanitizedValue.length > maxVal)
+				{
+					alert("Peringatan!\nNomor WhatsApp pembeli tidak boleh melebihi dari " + maxVal + " digit!");
+
+					sanitizedValue = sanitizedValue.substring(0, maxVal);
+				}
+
+				// Replace into "62" Indonesian phone number
+				if (sanitizedValue.startsWith("0"))
+					sanitizedValue = "62" + sanitizedValue.slice(1);
+
+				$(this).val(sanitizedValue);
 			});
 
 			<?php
