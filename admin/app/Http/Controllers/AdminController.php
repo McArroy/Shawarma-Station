@@ -70,22 +70,28 @@ class AdminController extends Controller
 			session(["order_id" => uniqid()]);
 
 		$order_id = session("order_id");
-		$product_id = intval($request->product_id);
+		$product_name = $request->product_name;
+		$product_price = intval($request->product_price);
 
 		// Check if the product is already in the session order list
 		$orderData = session()->get("order_data", []);
 
 		// Check if product already exists in the session
-		if (isset($orderData[$product_id]))
+		if (isset($orderData[$product_name]))
 		{
-			$orderData[$product_id]["quantity"] += 1;
+			// Check if adding 1 to the current quantity exceeds 999
+			if ($orderData[$product_name]["quantity"] + 1 > 999)
+				return redirect()->back()->with("error", "Error!\nMenu pesanan tidak dapat ditambahkan lagi!");
+
+			$orderData[$product_name]["quantity"] += 1;
 		}
 		else
 		{
 			// Add new product to the session
-			$orderData[$product_id] =
+			$orderData[$product_name] =
 			[
-				"product_id" => $product_id,
+				"product_name" => $product_name,
+				"product_price" => $product_price,
 				"quantity" => 1
 			];
 		}
@@ -103,18 +109,18 @@ class AdminController extends Controller
 			return redirect()->back();
 
 		$order_id = session("order_id");
-		$product_id = intval($request->product_id);
+		$product_name = $request->product_name;
 
 		// Get the order data from session
 		$orderData = session()->get("order_data", []);
 
 		// If the product exists in the session order data
-		if (isset($orderData[$product_id]))
+		if (isset($orderData[$product_name]))
 		{
-			if ($orderData[$product_id]["quantity"] > 1)
-				$orderData[$product_id]["quantity"] -= 1;
+			if ($orderData[$product_name]["quantity"] > 1)
+				$orderData[$product_name]["quantity"] -= 1;
 			else
-				unset($orderData[$product_id]);
+				unset($orderData[$product_name]);
 
 			// Update the session with the modified order data
 			session(["order_data" => $orderData]);
@@ -132,12 +138,13 @@ class AdminController extends Controller
 		$order_id = session("order_id");
 		$orderData = session("order_data");
 
-		foreach ($orderData as $product_id => $item)
+		foreach ($orderData as $product_name => $item)
 		{
 			$data = new CustomerOrder;
 			$data->order_id = $order_id;
-			$data->product_id = $product_id;
-			$data->quantity = $item["quantity"];
+			$data->product_name = $product_name;
+			$data->product_price = intval($item["product_price"]);
+			$data->quantity = intval($item["quantity"]);
 			$data->save();
 		}
 
@@ -180,11 +187,11 @@ class AdminController extends Controller
 		$request->validate(
 		[
 			"product_name" => "required|string|max:64",
-			"product_img" => "required|image",
+			"product_img" => "required|image|mimes:jpeg,jpg,png,bmp,heic",
 			"product_description" => "nullable|string|max:64",
-			"product_type" => "required|in:1,2",
-			"product_subtype" => "nullable|in:1,2,3,4",
-			"product_price" => "required|numeric"
+			"product_type" => "required|integer|in:1,2",
+			"product_subtype" => "nullable|integer|in:1,2,3,4",
+			"product_price" => "required|integer"
 		]);
 
 		// Handle the image upload
@@ -193,13 +200,12 @@ class AdminController extends Controller
 		$file->move(resource_path("imgs/menus"), $fileName);
 
 		$data = new Product;
-
 		$data->product_name = $request->product_name;
 		$data->product_img = $fileName;
 		$data->product_description = isset($request->product_description) ? $request->product_description : "";
-		$data->product_type = $request->product_type;
-		$data->product_subtype = isset($request->product_subtype) ? $request->product_subtype : "";
-		$data->product_price = $request->product_price;
+		$data->product_type = intval($request->product_type);
+		$data->product_subtype = isset($request->product_subtype) ? intval($request->product_subtype) : "";
+		$data->product_price = intval($request->product_price);
 		$data->save();
 		
 		return redirect()->back();
@@ -207,17 +213,27 @@ class AdminController extends Controller
 
 	public function MenuEdit(request $request)
 	{
+		$request->validate(
+		[
+			"product_name" => "required|string|max:64",
+			"product_img" => "required|image|mimes:jpeg,jpg,png,bmp,heic",
+			"product_description" => "nullable|string|max:64",
+			"product_type" => "required|integer|in:1,2",
+			"product_subtype" => "nullable|integer|in:1,2,3,4",
+			"product_price" => "required|integer"
+		]);
+
 		// Retrieve the existing product by its ID
 		$data = Product::find($request->product_id);
 
 		if (!$data)
-			return redirect()->back()->with("error", "Product not found!");
+			return redirect()->back()->with("error", "Error!\nMenu tidak ditemukan!");
 
 		$data->product_name = $request->product_name;
 		$data->product_description = isset($request->product_description) ? $request->product_description : "";
-		$data->product_type = $request->product_type;
-		$data->product_subtype = isset($request->product_subtype) ? $request->product_subtype : "";
-		$data->product_price = $request->product_price;
+		$data->product_type = intval($request->product_type);
+		$data->product_subtype = isset($request->product_subtype) ? intval($request->product_subtype) : "";
+		$data->product_price = intval($request->product_price);
 
 		if ($request->hasFile('product_img'))
 		{
@@ -236,15 +252,18 @@ class AdminController extends Controller
 	{
 		// Retrieve the existing product by its ID
 		$data = Product::find($product_id);
-		$data2 = CustomerOrder::find($product_id);
 
 		if (!$data)
-			return redirect()->back()->with("error", "Product not found!");
+			return redirect()->back()->with("error", "Error!\nMenu tidak ditemukan!");
+
+		// Get image file path
+		$imagePath = resource_path("imgs/menus/") . $data->product_img;
+
+		// Check if the file exists and then delete it
+		if (file_exists($imagePath))
+			unlink($imagePath);
 
 		$data->delete();
-
-		if ($data2)
-			$data2->delete();
 		
 		return redirect()->back();
 	}
