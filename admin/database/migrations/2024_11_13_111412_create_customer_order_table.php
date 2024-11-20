@@ -14,15 +14,10 @@ return new class extends Migration
 		Schema::create("customer_order", function(Blueprint $table)
 		{
 			$table->id();
-			$table->string("order_id");
-			$table->unsignedBigInteger("product_id");
+			$table->string("order_id", 13);
+			$table->string("product_name", 64);
+			$table->integer("product_price");
 			$table->integer("quantity");
-
-			// Define the foreign key constraint
-			$table->foreign("product_id")
-				->references("product_id")
-				->on("product")
-				->onDelete("cascade");
 		});
 	}
 
