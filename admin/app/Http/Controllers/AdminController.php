@@ -14,7 +14,7 @@ class AdminController extends Controller
 	private function Customer(string $customer_name, string $whatsapp_number)
 	{
 		if (!session()->has("customer_id"))
-			session(["customer_id" => uniqid()]);
+			session(["customer_id" => substr(uniqid(), 0, 11)]);
 
 		$data = new Customer;
 		$data->customer_id = session("customer_id");
@@ -67,7 +67,7 @@ class AdminController extends Controller
 	{
 		// Get the current order_id from the session (or generate one if it's the first time)
 		if (!session()->has("order_id"))
-			session(["order_id" => uniqid()]);
+			session(["order_id" => substr(uniqid(), 0, 13)]);
 
 		$order_id = session("order_id");
 		$product_name = $request->product_name;
@@ -202,9 +202,9 @@ class AdminController extends Controller
 		$data = new Product;
 		$data->product_name = $request->product_name;
 		$data->product_img = $fileName;
-		$data->product_description = isset($request->product_description) ? $request->product_description : "";
+		$data->product_description = isset($request->product_description) ? $request->product_description : null;
 		$data->product_type = intval($request->product_type);
-		$data->product_subtype = isset($request->product_subtype) ? intval($request->product_subtype) : "";
+		$data->product_subtype = (intval($request->product_type) == 2) ? null : (isset($request->product_subtype) ? intval($request->product_subtype) : null);
 		$data->product_price = intval($request->product_price);
 		$data->save();
 		
@@ -216,7 +216,7 @@ class AdminController extends Controller
 		$request->validate(
 		[
 			"product_name" => "required|string|max:64",
-			"product_img" => "required|image|mimes:jpeg,jpg,png,bmp,heic",
+			"product_img" => "nullable|image|mimes:jpeg,jpg,png,bmp,heic",
 			"product_description" => "nullable|string|max:64",
 			"product_type" => "required|integer|in:1,2",
 			"product_subtype" => "nullable|integer|in:1,2,3,4",
@@ -230,9 +230,9 @@ class AdminController extends Controller
 			return redirect()->back()->with("error", "Error!\nMenu tidak ditemukan!");
 
 		$data->product_name = $request->product_name;
-		$data->product_description = isset($request->product_description) ? $request->product_description : "";
+		$data->product_description = isset($request->product_description) ? $request->product_description : null;
 		$data->product_type = intval($request->product_type);
-		$data->product_subtype = isset($request->product_subtype) ? intval($request->product_subtype) : "";
+		$data->product_subtype = (intval($request->product_type) == 2) ? null : (isset($request->product_subtype) ? intval($request->product_subtype) : null);
 		$data->product_price = intval($request->product_price);
 
 		if ($request->hasFile('product_img'))
