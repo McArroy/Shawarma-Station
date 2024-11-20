@@ -84,6 +84,8 @@
 				
 				if ($isMenuOrderPage)
 				{
+					$order_id = session("order_id");
+					$orderData = session("order_data", []);
 				?>
 					<div class="sub-selections">
 						<a href="javascript:void(0);" class="button button-unselected" title="{{ __('Package') }}" onclick="displayMenu(1);">{{ __("Package") }}</a>
@@ -118,12 +120,15 @@
 									<p>Rp{{ number_format($product->product_price, 0, ",", ".") }}</p>
 								</div>
 								<div class="actions">
+									@if (isset($orderData[$product->product_name]) && $orderData[$product->product_name]["quantity"] > 0)
 									<form method="POST" action="{{ route('order.reduce') }}">
 										@csrf
 
 										<input type="hidden" name="product_name" value="{{ $product->product_name }}">
 										<button class="reduce" title="{{ __('Kurang') }}">{{ __("-") }}</button>
 									</form>
+									<p class="quantity">{{ $orderData[$product->product_name]["quantity"] }}</p>
+									@endif
 									<form method="POST" action="{{ route('order.add') }}">
 										@csrf
 
@@ -139,14 +144,7 @@
 						@endif
 					</div>
 
-					<?php
-
-					$order_id = session("order_id");
-					$orderData = session("order_data", []);
-
-					if (count($orderData) > 0)
-					{
-					?>
+					@if (count($orderData) > 0)
 						<div class="order-actions">
 							<button class="button" title="{{ __('Batalkan pesanan') }}" onclick="if (confirm('Apakah Anda yakin ingin menghapus pesanan ini?')) { window.location.href = '{{ route('order.delete') }}'; }">{{ __("Batal") }}</button>
 							<button class="button" title="{{ __('Detail pesanan') }}" onclick="toggleOrderPanel();">{{ __("Detail") }}</button>
@@ -224,10 +222,7 @@
 
 							<button class="button button-order" title="{{ __('Pesan dan kirim struk melalui WhatsApp') }}" onclick="orderSave();">{{ __("Pesan") }}</button>
 						</div>
-					<?php
-					}
-
-					?>
+					@endif
 
 					<script type="text/javascript">
 						var isButtonClicked = false;
