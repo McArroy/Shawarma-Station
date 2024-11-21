@@ -28,7 +28,7 @@
 		<script>
 			$(document).ready(function()
 			{
-				var hashVersion = 18248299128239200;
+				var hashVersion = 18248299128239300101;
 				var cssUrl = "{{ asset('css/style.css') }}?hash=" + hashVersion;
 
 				$("html head").append("<link rel='stylesheet' href='" + cssUrl + "'/>");
