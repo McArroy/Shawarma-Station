@@ -206,7 +206,7 @@
 						{
 							quantityTotal = 0;
 							priceTotal = 0;
-							
+
 							$("body.admin-panel .right .contents .order-panel").toggleClass("active");
 						}
 
@@ -383,10 +383,10 @@
 								<img src="{{ asset('imgs/shawarma_station_logo_transparent.png') }}" alt="{{ __('shawarma_logo') }}">
 								<div class="equal-sign-bar"></div>
 								<div class="container">
-									<p>{{ __("Tanggal\t:\t") }}<span id="bill-time">{{ __("bill_time") }}</span></p>
-									<p>{{ __("Nama\t:\t") }}<span id="customer-name">{{ __("customer_name") }}</span></p>
-									<p>{{ __("No. WhatsApp\t:\t") }}<span id="whatsapp-number">{{ __("whatsapp_number") }}</span></p>
-									<p>{{ __("No. Order\t:\t") }}<span id="order-id">{{ __("order_id") }}</span></p>
+									<p>{{ __("Tanggal\t:\t") }}<span class="bill-time">{{ __("bill_time") }}</span></p>
+									<p>{{ __("Nama\t:\t") }}<span class="customer-name">{{ __("customer_name") }}</span></p>
+									<p>{{ __("No. WhatsApp\t:\t") }}<span class="whatsapp-number">{{ __("whatsapp_number") }}</span></p>
+									<p>{{ __("No. Order\t:\t") }}<span class="order-id">{{ __("order_id") }}</span></p>
 									<div class="equal-sign-bar"></div>
 								</div>
 								<div class="menus">
@@ -404,16 +404,16 @@
 							function toggleOrderPanel(order_id = null, bill_time = null, customer_name = null, whatsapp_number = null, orders = null)
 							{
 								if (order_id !== null)
-									$(".order-history .receipt .container span#order-id").html(order_id);
+									$(".order-history .receipt .container span.order-id").html(order_id);
 								
 								if (bill_time !== null)
-									$(".order-history .receipt .container span#bill-time").html(bill_time);
+									$(".order-history .receipt .container span.bill-time").html(bill_time);
 								
 								if (customer_name !== null)
-									$(".order-history .receipt .container span#customer-name").html(customer_name);
+									$(".order-history .receipt .container span.customer-name").html(customer_name);
 								
 								if (whatsapp_number !== null)
-									$(".order-history .receipt .container span#whatsapp-number").html(whatsapp_number);
+									$(".order-history .receipt .container span.whatsapp-number").html(whatsapp_number);
 
 								if (orders !== null && Array.isArray(orders))
 								{
