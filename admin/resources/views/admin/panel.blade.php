@@ -190,33 +190,6 @@
 								<div class="equal-sign-bar"></div>
 								<div class="menus-price-total">
 									<span>{{ __("TOTAL\t:\t") }}</span>
-									<script type="text/javascript">
-										var quantityTotal = 0;
-										var priceTotal = 0;
-
-										$(".menus .price-details p.quantity").each(function()
-										{
-											quantityTotal += parseInt($(this).html(), 10);
-										});
-
-										$(".menus .price-details p.price-subtotal").each(function()
-										{
-											priceTotal += parseInt($(this).html(), 10);
-										});
-
-										var formattedPrice = new Intl.NumberFormat("id-ID",
-										{
-											style: "currency",
-											currency: "IDR",
-											minimumFractionDigits: 0,
-											maximumFractionDigits: 0
-										}).format(priceTotal);
-
-										formattedPrice = formattedPrice.replace(/Rp[\u200B\u00A0 ]/, "Rp")
-										
-										$(".menus-price-total").append("<span class='quantity-total'>" + quantityTotal + " QTY </span>");
-										$(".menus-price-total").append("<span class='price-total'>" + formattedPrice + "</span>");
-									</script>
 								</div>
 							</div>
 
@@ -226,9 +199,14 @@
 
 					<script type="text/javascript">
 						var isButtonClicked = false;
+						var quantityTotal = 0;
+						var priceTotal = 0;
 
 						function toggleOrderPanel()
 						{
+							quantityTotal = 0;
+							priceTotal = 0;
+							
 							$("body.admin-panel .right .contents .order-panel").toggleClass("active");
 						}
 
@@ -324,6 +302,29 @@
 								}, 100);
 							}
 						});
+
+						$(".menus .price-details p.quantity").each(function()
+						{
+							quantityTotal += parseInt($(this).html(), 10);
+						});
+
+						$(".menus .price-details p.price-subtotal").each(function()
+						{
+							priceTotal += parseInt($(this).html(), 10);
+						});
+
+						var formattedPrice = new Intl.NumberFormat("id-ID",
+						{
+							style: "currency",
+							currency: "IDR",
+							minimumFractionDigits: 0,
+							maximumFractionDigits: 0
+						}).format(priceTotal);
+
+						formattedPrice = formattedPrice.replace(/Rp[\u200B\u00A0 ]/, "Rp");
+						
+						$(".menus-price-total").append("<span class='quantity-total'>" + quantityTotal + " QTY </span>");
+						$(".menus-price-total").append("<span class='price-total'>" + formattedPrice + "</span>");
 					</script>
 				<?php
 				}
@@ -337,9 +338,18 @@
 
 								$customer = Customer::where("customer_id", $customerBill->customer_id)->first();
 								$orders = CustomerOrder::where("order_id", $customerBill->order_id)->get();
+								$ordersJson = $orders->map(function($order)
+								{
+									return
+									[
+										"product_name" => $order->product_name,
+										"quantity" => $order->quantity,
+										"product_price" => $order->product_price
+									];
+								})->toJson();
 
 								?>
-								<div class="card" title="{{ __('Nomor pesanan: ') }}{{ $customerBill->order_id }}" onclick="toggleOrderPanel('{{ $customerBill->order_id }}', '{{ $customerBill->bill_time }}', '{{ $customer->customer_name }}', '{{ $customer->whatsapp_number }}', '{{ $orders }}');">
+								<div class="card" title="{{ __('Nomor pesanan: ') }}{{ $customerBill->order_id }}" onclick="toggleOrderPanel('{{ $customerBill->order_id }}', '{{ $customerBill->bill_time }}', '{{ $customer->customer_name }}', '{{ $customer->whatsapp_number }}', {{ $ordersJson }});">
 									<img src="{{ asset('imgs/icons/menu_order_history.png') }}" alt="{{ __('icon_menu_order_history') }}">
 									<div class="text">
 										<p>{{ $customerBill->order_id }}</p>
@@ -379,51 +389,18 @@
 									<p>{{ __("No. Order\t:\t") }}<span id="order-id">{{ __("order_id") }}</span></p>
 									<div class="equal-sign-bar"></div>
 								</div>
-								<?php
-								foreach ($orders as $order)
-								{
-									$product = Product::find($order->product_id);
-								?>
-									<div class="menus">
-										<span>{{ $product->product_name }}</span>
-										<div class="price-details">
-											<p>{{ number_format($product->product_price, 0, ",", ".") }}</p>
-											<p>{{ $order->quantity }}</p>
-											<p class="price-subtotal hidden">{{ (int) $product->product_price * (int) $order->quantity }}</p>
-											<p>{{ number_format((int) $product->product_price * (int) $order->quantity, 0, ",", ".") }}</p>
-										</div> 
-									</div>
-								<?php
-								}
-								?>
+								<div class="menus">
+								</div>
 								<div class="equal-sign-bar"></div>
 								<div class="menus-price-total">
-									<span>{{ __("TOTAL\t:\t") }}</span>
-									<script type="text/javascript">
-										var priceTotal = 0;
-
-										$(".menus .price-details p.price-subtotal").each(function()
-										{
-											priceTotal += parseInt($(this).html(), 10);
-										});
-
-										var formattedPrice = new Intl.NumberFormat("id-ID",
-										{
-											style: "currency",
-											currency: "IDR",
-											minimumFractionDigits: 0,
-											maximumFractionDigits: 0
-										}).format(priceTotal);
-
-										formattedPrice = formattedPrice.replace(/Rp[\u200B\u00A0 ]/, "Rp")
-										
-										$(".menus-price-total").append("<span>" + formattedPrice + "</span>");
-									</script>
 								</div>
 							</div>
 						</div>
 
 						<script type="text/javascript">
+							var quantityTotal = 0;
+							var priceTotal = 0;
+
 							function toggleOrderPanel(order_id = null, bill_time = null, customer_name = null, whatsapp_number = null, orders = null)
 							{
 								if (order_id !== null)
@@ -438,7 +415,66 @@
 								if (whatsapp_number !== null)
 									$(".order-history .receipt .container span#whatsapp-number").html(whatsapp_number);
 
+								if (orders !== null && Array.isArray(orders))
+								{
+									let menusHtml = "";
+
+									orders.forEach(order =>
+									{
+										menusHtml += `<div class="menus">
+											<span>${order.product_name}</span>
+											<div class="price-details">
+												<p>${
+													new Intl.NumberFormat("id-ID",
+													{
+														style: "currency",
+														currency: "IDR",
+														minimumFractionDigits: 0,
+														maximumFractionDigits: 0
+													}).format(order.product_price).replace(/Rp[\u200B\u00A0 ]/, "Rp")
+												}</p>
+												<p class="quantity">${order.quantity}</p>
+												<p class="price-subtotal hidden">${order.product_price * order.quantity}</p>
+												<p>${
+													new Intl.NumberFormat("id-ID",
+													{
+														minimumFractionDigits: 0,
+														maximumFractionDigits: 0
+													}).format(order.product_price * order.quantity)
+												}</p>
+											</div>
+										</div>`;
+									});
+
+									$(".order-history .receipt .menus").html(menusHtml);
+								}
+
 								$("body.admin-panel .right .contents .order-panel").toggleClass("active");
+
+								quantityTotal = 0;
+								priceTotal = 0;
+
+								$(".menus .price-details p.quantity").each(function()
+								{
+									quantityTotal += parseInt($(this).html(), 10);
+								});
+
+								$(".menus .price-details p.price-subtotal").each(function()
+								{
+									priceTotal += parseInt($(this).html(), 10);
+								});
+
+								var formattedPrice = new Intl.NumberFormat("id-ID",
+								{
+									style: "currency",
+									currency: "IDR",
+									minimumFractionDigits: 0,
+									maximumFractionDigits: 0
+								}).format(priceTotal);
+
+								formattedPrice = formattedPrice.replace(/Rp[\u200B\u00A0 ]/, "Rp");
+
+								$(".menus-price-total").html("<span>{{ __('TOTAL\t:\t') }}</span>" + "<span class='quantity-total'>" + quantityTotal + " QTY </span><span>" + formattedPrice + "</span>");
 							}
 						</script>
 					@endif
