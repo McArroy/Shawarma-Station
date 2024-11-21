@@ -32,8 +32,11 @@ These changelogs are basically just a summary list of changes that are very impo
 - Fixed server-side data validation
 - Fixed some known bugs
 - Removed unused CSS-style
-- Removed unused 
+- Removed unused database
 - Enabled WhatsApp-integrated message to send customer's receipt
+
+**[ CUSTOMER ]**
+- Enabled dynamic-database from admin-page
 
 </details>
 
