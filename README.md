@@ -22,11 +22,13 @@ These changelogs are basically just a summary list of changes that are very impo
 - Added a display-text instead a blank page when there is no data to be shown
 - Added client-sided inputs check
 - Added confirmation before deletion
+- Added quantity-counter on menu "Order" (only visible when the current product has been added)
 - Fixed database data-type and maximum value
 - Fixed image-menu didn't remove if the menu removed from the database
 - Fixed indentation in some layouts
 - Fixed non-working Menu-Order History by replacing dynamic-products into static-products and non-removeable history
 - Fixed overflow element
+- Fixed "Reduce" button on menu "Order" only visible when the current product has been added
 - Fixed server-side data validation
 - Fixed some known bugs
 - Removed unused CSS-style
